@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elevate Digital | Premium Web Development</title>
+  <meta name="description" content="Transparent pricing for web development services, project packages, and digital solutions by Elevate Digital.">
+  
+  <!-- Favicon & Social Preview (OG) -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Elevate Digital | Web Development">
+  <meta property="og:description" content="Premium web development, transparent pricing, and tailored digital solutions.">
+  <meta property="og:image" content="og-image.png">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+  <!-- ========== TOP BANNER ========== -->
+  <div class="top-banner" id="top-banner">
+    <div class="container">
+      <p>Looking to upgrade your current website? <a href="#addons">Explore our individual Add-Ons</a> <i class="ph ph-arrow-right"></i></p>
+    </div>
+  </div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="main-nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="nav-logo-icon"><i class="ph ph-rocket"></i></span>
+        Elevate Digital
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#components">Components</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#addons">Add-Ons</a></li>
+        <li><a href="#maintenance">Maintenance</a></li>
+        <li><a href="#admin">Admin Roles</a></li>
+      </ul>
+      <div class="currency-toggle-wrapper">
+        <span class="currency-label active" id="label-usd">USD</span>
+        <button class="currency-toggle" id="currency-toggle" aria-label="Toggle currency"></button>
+        <span class="currency-label" id="label-lkr">LKR</span>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <h1>Billing Structure</h1>
+      <p class="subtitle">Transparent pricing for web development services, component costs, and project packages.</p>
+      <div class="exchange-badge">
+        <span>Exchange Rate:</span>
+        <span class="rate">1 USD = ~335 LKR</span>
+        <span>(June 2026, mid-market avg)</span>
+      </div>
+      
+      <div class="hero-actions fade-in">
+        <p class="hero-question">Not sure where to start?</p>
+        <div class="btn-group">
+          <a href="#packages" class="btn btn-primary">View Project Packages <i class="ph ph-package"></i></a>
+          <a href="#admin" class="btn btn-secondary">Read Admin Roles <i class="ph ph-shield-check"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPONENT PRICING ========== -->
+  <section id="components">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Component Pricing</h2>
+      </div>
+
+      <!-- Domain -->
+      <div class="sub-section fade-in">
+        <h3>Domain Name (.com, Annual)</h3>
+        <div class="data-grid">
+          <div class="data-card">
+            <div class="data-card-header">GoDaddy</div>
+            <div class="data-row"><span class="data-label">1st Year (USD)</span><span class="data-value">$0.01 - $4.99 (promo)</span></div>
+            <div class="data-row"><span class="data-label">Renewal (USD/yr)</span><span class="data-value">$21.99 - $22.99</span></div>
+            <div class="data-row"><span class="data-label">Privacy Protection</span><span class="data-value cell-success">Free</span></div>
+          </div>
+          <div class="data-card">
+            <div class="data-card-header">Namecheap</div>
+            <div class="data-row"><span class="data-label">1st Year (USD)</span><span class="data-value">$6.79 - $11.28 (promo)</span></div>
+            <div class="data-row"><span class="data-label">Renewal (USD/yr)</span><span class="data-value">$18.48 + $0.20 ICANN</span></div>
+            <div class="data-row"><span class="data-label">Privacy Protection</span><span class="data-value cell-success">Free</span></div>
+          </div>
+        </div>
+        <ul class="notes-list">
+          <li><strong>Service Fee:</strong> $5</li>
+          <li><strong>Recommended: Namecheap</strong> &mdash; Cheaper renewal, transparent pricing</li>
+        </ul>
+      </div>
+
+      <!-- Hosting -->
+      <div class="sub-section fade-in">
+        <h3>Hosting (Shared, Monthly)</h3>
+        <div class="data-grid">
+          <div class="data-card">
+            <div class="data-card-header">Shared Hosting</div>
+            <div class="data-row"><span class="data-label">Cost Range</span><span class="data-value">$3 - $10/mo</span></div>
+          </div>
+          <div class="data-card">
+            <div class="data-card-header">Renewal (after intro)</div>
+            <div class="data-row"><span class="data-label">Cost Range</span><span class="data-value cell-warning">$10 - $20/mo</span></div>
+          </div>
+        </div>
+        <ul class="notes-list">
+          <li><strong>Service Fee:</strong> $10/mo</li>
+        </ul>
+      </div>
+
+      <!-- Google Maps API -->
+      <div class="sub-section fade-in">
+        <h3>Google Maps API (Monthly)</h3>
+        <div class="data-grid">
+          <div class="data-card">
+            <div class="data-card-header">Pay-As-You-Go</div>
+            <div class="data-row"><span class="data-label">Cost</span><span class="data-value cell-success">Free tier: 10,000 events/SKU</span></div>
+            <div class="data-row"><span class="data-label">Included</span><span class="data-value">Per-SKU billing after free tier</span></div>
+          </div>
+          <div class="data-card">
+            <div class="data-card-header">Starter Plan</div>
+            <div class="data-row"><span class="data-label">Cost</span><span class="data-value">$100/mo</span></div>
+            <div class="data-row"><span class="data-label">Included</span><span class="data-value">50,000 calls</span></div>
+          </div>
+        </div>
+        <ul class="notes-list">
+          <li><strong>Service Fee:</strong> $10 - $25</li>
+        </ul>
+      </div>
+
+      <!-- Payment Gateway -->
+      <div class="sub-section fade-in">
+        <h3>Payment Gateway</h3>
+        <div class="data-grid">
+          <div class="data-card">
+            <div class="data-card-header">PayHere</div>
+            <div class="data-row"><span class="data-label">Setup Fee</span><span class="data-value cell-success">Free (LKR 0)</span></div>
+            <div class="data-row"><span class="data-label">Transaction Fee</span><span class="data-value">2.69% - 3.30% per txn</span></div>
+            <div class="data-row"><span class="data-label">Status in Sri Lanka</span><span class="data-value cell-success">Fully supported</span></div>
+          </div>
+          <div class="data-card">
+            <div class="data-card-header">PayPal</div>
+            <div class="data-row"><span class="data-label">Setup Fee</span><span class="data-value cell-success">Free</span></div>
+            <div class="data-row"><span class="data-label">Transaction Fee</span><span class="data-value">Varies</span></div>
+            <div class="data-row"><span class="data-label">Status in Sri Lanka</span><span class="data-value cell-warning">Launched May 15, 2026</span></div>
+          </div>
+          <div class="data-card">
+            <div class="data-card-header">Stripe</div>
+            <div class="data-row"><span class="data-label">Setup Fee</span><span class="data-value">N/A</span></div>
+            <div class="data-row"><span class="data-label">Transaction Fee</span><span class="data-value">N/A</span></div>
+            <div class="data-row"><span class="data-label">Status in Sri Lanka</span><span class="data-value cell-danger">NOT available</span></div>
+          </div>
+        </div>
+
+        <div class="info-block warn">
+          <strong><i class="ph ph-warning"></i> PayPal Sri Lanka Details</strong>
+          <ul>
+            <li>Officially launched: May 15, 2026</li>
+            <li>Partner banks: Commercial Bank, Sampath Bank, Bank of Ceylon</li>
+            <li>Some features (receive payments, invoicing, withdrawals) still marked "coming soon"</li>
+            <li>Full functionality rolling out through partner bank integrations</li>
+          </ul>
+        </div>
+        <div class="info-block recommend">
+          <strong><i class="ph ph-check-circle"></i> PayHere Details</strong>
+          <ul>
+            <li>Supports: local cards, eZcash, Genie, internet banking</li>
+            <li>Plans: Lite (free monthly), Plus, Premium</li>
+            <li>Best for local/regional payments</li>
+          </ul>
+        </div>
+        <ul class="notes-list">
+          <li><strong>Service Fee:</strong> $50 (setup/integration)</li>
+        </ul>
+      </div>
+
+      <!-- SEO -->
+      <div class="sub-section fade-in">
+        <h3>SEO Setup (One-time)</h3>
+        <div class="data-grid">
+          <div class="data-card">
+            <div class="data-card-header">Pricing Breakdown</div>
+            <div class="data-row"><span class="data-label">Base Cost</span><span class="data-value">$0</span></div>
+            <div class="data-row"><span class="data-label">Service Fee</span><span class="data-value">$60</span></div>
+            <div class="data-row" style="border-top: 1px solid var(--border); margin-top: 0.5rem; padding-top: 0.5rem;">
+              <span class="data-label" style="font-weight: 600; color: var(--text-heading);">Total</span>
+              <span class="data-value" style="font-weight: 600; color: var(--accent);">$60 <span class="lkr-value" style="font-size:0.85em; color:var(--text-muted); font-weight:normal;">(~20,100 LKR)</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECT PACKAGES ========== -->
+  <section id="packages">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Project Packages</h2>
+      </div>
+      <div class="packages-grid">
+
+        <!-- Package 1 -->
+        <div class="package-card fade-in">
+          <span class="package-number">1</span>
+          <h3>Starter</h3>
+          <p class="package-target">Single Page Site</p>
+          <p class="package-pages">For: Personal sites, coming soon pages, event pages &bull; Pages: 1</p>
+          <ul class="package-features">
+            <li>Responsive single-page layout</li>
+            <li>Header with logo/title</li>
+            <li>Hero section</li>
+            <li>About/info section</li>
+            <li>Contact section (email link or basic form)</li>
+            <li>Footer with social media links</li>
+            <li>Mobile-friendly design</li>
+            <li>Basic on-page SEO (meta tags, title)</li>
+          </ul>
+          <div class="package-pricing">
+            <div class="price-row"><span class="label">Base Value</span><span class="value">$50 - $100</span></div>
+            <div class="price-row"><span class="label">Service Fee</span><span class="value">$100 - $150</span></div>
+            <div class="price-range">
+              <span class="label">Total Range</span>
+              <span class="value usd-price">$150 - $250</span>
+              <span class="value lkr-price" style="display:none;">~50,250 - 83,750 LKR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 2 -->
+        <div class="package-card fade-in">
+          <span class="package-number">2</span>
+          <h3>Digital Presence</h3>
+          <p class="package-target">Landing Page</p>
+          <p class="package-pages">For: Portfolio sites, small business brochures &bull; Pages: 1 - 3</p>
+          <ul class="package-features">
+            <li class="inherited">Everything in Starter +</li>
+            <li>Multi-section layout (Home, About, Contact)</li>
+            <li>Contact form with validation and email delivery</li>
+            <li>Image gallery or portfolio grid</li>
+            <li>Google Fonts and custom typography</li>
+            <li>Smooth scroll navigation</li>
+            <li>WhatsApp/call button</li>
+            <li>Basic SEO setup (sitemap, meta tags, Open Graph)</li>
+            <li>SSL certificate setup</li>
+          </ul>
+          <div class="package-pricing">
+            <div class="price-row"><span class="label">Base Value</span><span class="value">$100 - $200</span></div>
+            <div class="price-row"><span class="label">Service Fee</span><span class="value">$150 - $400</span></div>
+            <div class="price-range">
+              <span class="label">Total Range</span>
+              <span class="value usd-price">$250 - $600</span>
+              <span class="value lkr-price" style="display:none;">~83,750 - 201,000 LKR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 3 -->
+        <div class="package-card fade-in">
+          <span class="package-number">3</span>
+          <h3>Business Standard</h3>
+          <p class="package-target">Multi-Page</p>
+          <p class="package-pages">For: Service-based businesses, restaurants, salons, clinics &bull; Pages: 4 - 7</p>
+          <ul class="package-features">
+            <li class="inherited">Everything in Digital Presence +</li>
+            <li>Separate pages (Home, About, Services, Gallery, Contact, FAQ)</li>
+            <li>Google Maps integration</li>
+            <li>Photo/video gallery with lightbox</li>
+            <li>Testimonials/reviews section</li>
+            <li>Team/staff section</li>
+            <li>Operating hours display</li>
+            <li>Social media feed integration</li>
+            <li>Contact form with multiple fields</li>
+            <li>Google Analytics setup</li>
+            <li>Speed optimization</li>
+          </ul>
+          <div class="package-pricing">
+            <div class="price-row"><span class="label">Base Value</span><span class="value">$300 - $500</span></div>
+            <div class="price-row"><span class="label">Service Fee</span><span class="value">$400 - $1,000</span></div>
+            <div class="price-range">
+              <span class="label">Total Range</span>
+              <span class="value usd-price">$700 - $1,500</span>
+              <span class="value lkr-price" style="display:none;">~234,500 - 502,500 LKR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 4 -->
+        <div class="package-card fade-in">
+          <span class="package-number">4</span>
+          <h3>Business Pro</h3>
+          <p class="package-target">with Booking/CRM</p>
+          <p class="package-pages">For: Businesses needing appointments, bookings, or lead management &bull; Pages: 5 - 10</p>
+          <ul class="package-features">
+            <li class="inherited">Everything in Business Standard +</li>
+            <li>Online booking/appointment system</li>
+            <li>Admin dashboard (manage bookings, clients, services)</li>
+            <li>Automated email/SMS notifications</li>
+            <li>Calendar integration (Google Calendar sync)</li>
+            <li>Client database/CRM</li>
+            <li>Service pricing page</li>
+            <li>Staff profiles with individual schedules</li>
+            <li>Blog/news section</li>
+            <li>Newsletter signup</li>
+            <li>Basic analytics and reporting</li>
+            <li>User login (admin side)</li>
+          </ul>
+          <div class="package-pricing">
+            <div class="price-row"><span class="label">Base Value</span><span class="value">$500 - $1,000</span></div>
+            <div class="price-row"><span class="label">Service Fee</span><span class="value">$1,000 - $2,000</span></div>
+            <div class="price-range">
+              <span class="label">Total Range</span>
+              <span class="value usd-price">$1,500 - $3,000</span>
+              <span class="value lkr-price" style="display:none;">~502,500 - 1,005,000 LKR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 5 -->
+        <div class="package-card fade-in">
+          <span class="package-number">5</span>
+          <h3>E-Commerce</h3>
+          <p class="package-target">Online Store</p>
+          <p class="package-pages">For: Product-based businesses, online shops &bull; Pages: 8 - 15+</p>
+          <ul class="package-features">
+            <li class="inherited">Everything in Business Standard +</li>
+            <li>Product catalog with categories and filters</li>
+            <li>Product detail pages (images, descriptions, variants)</li>
+            <li>Shopping cart</li>
+            <li>Secure checkout flow</li>
+            <li>Payment gateway integration (PayHere/PayPal)</li>
+            <li>Order management (admin)</li>
+            <li>Customer accounts (registration, order history)</li>
+            <li>Search functionality</li>
+            <li>Wishlist</li>
+            <li>Shipping and tax calculation</li>
+            <li>Email notifications (order confirmation, shipping updates)</li>
+            <li>Inventory tracking (basic)</li>
+            <li>Mobile-optimized shopping experience</li>
+          </ul>
+          <div class="package-pricing">
+            <div class="price-row"><span class="label">Base Value</span><span class="value">$500 - $1,500</span></div>
+            <div class="price-row"><span class="label">Service Fee</span><span class="value">$1,500 - $3,500</span></div>
+            <div class="price-range">
+              <span class="label">Total Range</span>
+              <span class="value usd-price">$2,000 - $5,000</span>
+              <span class="value lkr-price" style="display:none;">~670,000 - 1,675,000 LKR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 6 -->
+        <div class="package-card fade-in">
+          <span class="package-number">6</span>
+          <h3>E-Commerce Pro</h3>
+          <p class="package-target">Full Scale</p>
+          <p class="package-pages">For: Large stores, multi-vendor, inventory management &bull; Pages: 15+</p>
+          <ul class="package-features">
+            <li class="inherited">Everything in E-Commerce +</li>
+            <li>Advanced inventory management system</li>
+            <li>Multi-vendor/seller support</li>
+            <li>Coupon and discount system</li>
+            <li>Product reviews and ratings</li>
+            <li>Advanced analytics dashboard (sales, traffic, conversion)</li>
+            <li>Email marketing integration</li>
+            <li>Abandoned cart recovery</li>
+            <li>Multiple payment methods</li>
+            <li>Advanced shipping rules (zones, weight-based)</li>
+            <li>Returns/refund management</li>
+            <li>Export reports (CSV/PDF)</li>
+            <li>Admin role management (super admin, manager, staff)</li>
+            <li>SEO-optimized product pages</li>
+          </ul>
+          <div class="package-pricing">
+            <div class="price-row"><span class="label">Base Value</span><span class="value">$1,500 - $3,000</span></div>
+            <div class="price-row"><span class="label">Service Fee</span><span class="value">$3,500 - $5,000</span></div>
+            <div class="price-range">
+              <span class="label">Total Range</span>
+              <span class="value usd-price">$5,000 - $8,000</span>
+              <span class="value lkr-price" style="display:none;">~1,675,000 - 2,680,000 LKR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 7 -->
+        <div class="package-card fade-in">
+          <span class="package-number">7</span>
+          <h3>Custom Web Application</h3>
+          <p class="package-target">SaaS / Internal Tools</p>
+          <p class="package-pages">For: SaaS products, internal tools, complex business logic &bull; Pages: Custom</p>
+          <ul class="package-features">
+            <li>Custom UI/UX design from scratch</li>
+            <li>Admin panel with full CRUD operations</li>
+            <li>User authentication and role-based access control</li>
+            <li>Database design and architecture</li>
+            <li>REST API development</li>
+            <li>Third-party API integrations</li>
+            <li>Real-time features (notifications, live updates)</li>
+            <li>Data visualization and reporting dashboards</li>
+            <li>File upload and management</li>
+            <li>Search and filtering systems</li>
+            <li>Multi-language support (if needed)</li>
+            <li>Automated backups</li>
+            <li>Deployment and server setup</li>
+            <li>Post-launch support (bug fixes, minor updates)</li>
+            <li>Documentation</li>
+          </ul>
+          <div class="package-pricing">
+            <div class="price-row"><span class="label">Base Value</span><span class="value">$2,000 - $5,000</span></div>
+            <div class="price-row"><span class="label">Service Fee</span><span class="value">$3,000 - $10,000</span></div>
+            <div class="price-range">
+              <span class="label">Total Range</span>
+              <span class="value usd-price">$5,000 - $15,000+</span>
+              <span class="value lkr-price" style="display:none;">~1,675,000 - 5,025,000+ LKR</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ADD-ONS ========== -->
+  <section id="addons">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Add-Ons</h2>
+        <p>Available for any package. Prices are one-time setup fees unless marked as recurring.</p>
+      </div>
+
+      <!-- Content and Pages -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-file-text addon-icon"></i> Content and Pages</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Additional page (per page)</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>Blog setup (with CMS)</td><td class="usd-col">$100 - $300</td><td class="lkr-col">~33,500 - 100,500</td></tr>
+              <tr><td>Blog post writing (per post)</td><td class="usd-col">$20 - $50</td><td class="lkr-col">~6,700 - 16,750</td></tr>
+              <tr><td>FAQ section</td><td class="usd-col">$30 - $60</td><td class="lkr-col">~10,050 - 20,100</td></tr>
+              <tr><td>Testimonials/reviews section</td><td class="usd-col">$40 - $80</td><td class="lkr-col">~13,400 - 26,800</td></tr>
+              <tr><td>Portfolio/gallery page</td><td class="usd-col">$50 - $120</td><td class="lkr-col">~16,750 - 40,200</td></tr>
+              <tr><td>Team/staff page</td><td class="usd-col">$40 - $80</td><td class="lkr-col">~13,400 - 26,800</td></tr>
+              <tr><td>Privacy policy and terms pages</td><td class="usd-col">$30 - $50</td><td class="lkr-col">~10,050 - 16,750</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Forms and Communication -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-chat-circle-dots addon-icon"></i> Forms and Communication</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Contact form (basic)</td><td class="usd-col">$20 - $50</td><td class="lkr-col">~6,700 - 16,750</td></tr>
+              <tr><td>Advanced multi-step form</td><td class="usd-col">$80 - $200</td><td class="lkr-col">~26,800 - 67,000</td></tr>
+              <tr><td>Popup/modal forms</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>Newsletter/email signup</td><td class="usd-col">$40 - $100</td><td class="lkr-col">~13,400 - 33,500</td></tr>
+              <tr><td>WhatsApp chat button</td><td class="usd-col">$15 - $30</td><td class="lkr-col">~5,025 - 10,050</td></tr>
+              <tr><td>Live chat widget (Tidio, Tawk.to)</td><td class="usd-col">$50 - $150</td><td class="lkr-col">~16,750 - 50,250</td></tr>
+              <tr><td>AI chatbot setup</td><td class="usd-col">$200 - $500</td><td class="lkr-col">~67,000 - 167,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Social Media and Marketing -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-megaphone addon-icon"></i> Social Media and Marketing</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Social media links/icons</td><td class="usd-col">$10 - $20</td><td class="lkr-col">~3,350 - 6,700</td></tr>
+              <tr><td>Social media feed embed</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>Social share buttons</td><td class="usd-col">$15 - $30</td><td class="lkr-col">~5,025 - 10,050</td></tr>
+              <tr><td>Email marketing setup (Mailchimp, etc.)</td><td class="usd-col">$100 - $300</td><td class="lkr-col">~33,500 - 100,500</td></tr>
+              <tr><td>Email template design</td><td class="usd-col">$50 - $150</td><td class="lkr-col">~16,750 - 50,250</td></tr>
+              <tr><td>Google Business Profile setup</td><td class="usd-col">$30 - $60</td><td class="lkr-col">~10,050 - 20,100</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SEO and Analytics -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-trend-up addon-icon"></i> SEO and Analytics</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Basic SEO (meta tags, sitemap)</td><td class="usd-col">$40 - $80</td><td class="lkr-col">~13,400 - 26,800</td></tr>
+              <tr><td>Advanced SEO (keyword research, schema markup)</td><td class="usd-col">$100 - $300</td><td class="lkr-col">~33,500 - 100,500</td></tr>
+              <tr><td>Google Analytics setup</td><td class="usd-col">$30 - $60</td><td class="lkr-col">~10,050 - 20,100</td></tr>
+              <tr><td>Google Search Console setup</td><td class="usd-col">$20 - $40</td><td class="lkr-col">~6,700 - 13,400</td></tr>
+              <tr><td>Facebook Pixel/Meta tracking</td><td class="usd-col">$30 - $60</td><td class="lkr-col">~10,050 - 20,100</td></tr>
+              <tr><td>Monthly SEO reporting</td><td class="usd-col">$50 - $150/mo</td><td class="lkr-col">~16,750 - 50,250/mo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Design and Visual -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-paint-brush addon-icon"></i> Design and Visual</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Logo design</td><td class="usd-col">$50 - $200</td><td class="lkr-col">~16,750 - 67,000</td></tr>
+              <tr><td>Custom animations (scroll, hover, transitions)</td><td class="usd-col">$80 - $300</td><td class="lkr-col">~26,800 - 100,500</td></tr>
+              <tr><td>Dark mode toggle</td><td class="usd-col">$40 - $100</td><td class="lkr-col">~13,400 - 33,500</td></tr>
+              <tr><td>Custom loading screen</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>Favicon and app icon set</td><td class="usd-col">$15 - $30</td><td class="lkr-col">~5,025 - 10,050</td></tr>
+              <tr><td>Image optimization and compression</td><td class="usd-col">$20 - $50</td><td class="lkr-col">~6,700 - 16,750</td></tr>
+              <tr><td>Custom 404 error page</td><td class="usd-col">$20 - $40</td><td class="lkr-col">~6,700 - 13,400</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Functionality -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-gear addon-icon"></i> Functionality</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Search functionality</td><td class="usd-col">$50 - $150</td><td class="lkr-col">~16,750 - 50,250</td></tr>
+              <tr><td>Multi-language support (per language)</td><td class="usd-col">$100 - $300</td><td class="lkr-col">~33,500 - 100,500</td></tr>
+              <tr><td>User login/registration system</td><td class="usd-col">$150 - $400</td><td class="lkr-col">~50,250 - 134,000</td></tr>
+              <tr><td>File download section</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>Image/video lightbox gallery</td><td class="usd-col">$40 - $100</td><td class="lkr-col">~13,400 - 33,500</td></tr>
+              <tr><td>Google Maps integration</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>Calendar/event listing</td><td class="usd-col">$60 - $150</td><td class="lkr-col">~20,100 - 50,250</td></tr>
+              <tr><td>PDF generation (invoices, reports)</td><td class="usd-col">$100 - $250</td><td class="lkr-col">~33,500 - 83,750</td></tr>
+              <tr><td>QR code generator</td><td class="usd-col">$20 - $50</td><td class="lkr-col">~6,700 - 16,750</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- E-Commerce Specific -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-shopping-cart addon-icon"></i> E-Commerce Specific</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Additional payment gateway</td><td class="usd-col">$50 - $150</td><td class="lkr-col">~16,750 - 50,250</td></tr>
+              <tr><td>Coupon/discount system</td><td class="usd-col">$60 - $150</td><td class="lkr-col">~20,100 - 50,250</td></tr>
+              <tr><td>Product reviews and ratings</td><td class="usd-col">$50 - $120</td><td class="lkr-col">~16,750 - 40,200</td></tr>
+              <tr><td>Wishlist feature</td><td class="usd-col">$40 - $100</td><td class="lkr-col">~13,400 - 33,500</td></tr>
+              <tr><td>Order tracking page</td><td class="usd-col">$60 - $150</td><td class="lkr-col">~20,100 - 50,250</td></tr>
+              <tr><td>Invoice/receipt email template</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>Abandoned cart email</td><td class="usd-col">$60 - $150</td><td class="lkr-col">~20,100 - 50,250</td></tr>
+              <tr><td>Product comparison feature</td><td class="usd-col">$80 - $200</td><td class="lkr-col">~26,800 - 67,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Security and Performance -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-lock-key addon-icon"></i> Security and Performance</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>SSL certificate setup</td><td class="usd-col">$20 - $40</td><td class="lkr-col">~6,700 - 13,400</td></tr>
+              <tr><td>Speed optimization</td><td class="usd-col">$50 - $150</td><td class="lkr-col">~16,750 - 50,250</td></tr>
+              <tr><td>CDN setup (Cloudflare)</td><td class="usd-col">$30 - $80</td><td class="lkr-col">~10,050 - 26,800</td></tr>
+              <tr><td>CAPTCHA integration</td><td class="usd-col">$15 - $30</td><td class="lkr-col">~5,025 - 10,050</td></tr>
+              <tr><td>Cookie consent banner (GDPR)</td><td class="usd-col">$20 - $50</td><td class="lkr-col">~6,700 - 16,750</td></tr>
+              <tr><td>Automated backup system</td><td class="usd-col">$40 - $100</td><td class="lkr-col">~13,400 - 33,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Third-Party Integrations -->
+      <div class="addon-category fade-in">
+        <h3><i class="ph ph-link addon-icon"></i> Third-Party Integrations</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Add-On</th><th class="usd-col">Price (USD)</th><th class="lkr-col">Price (LKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Google Calendar sync</td><td class="usd-col">$40 - $100</td><td class="lkr-col">~13,400 - 33,500</td></tr>
+              <tr><td>CRM integration (Zoho, HubSpot)</td><td class="usd-col">$100 - $300</td><td class="lkr-col">~33,500 - 100,500</td></tr>
+              <tr><td>SMS notification setup</td><td class="usd-col">$50 - $150</td><td class="lkr-col">~16,750 - 50,250</td></tr>
+              <tr><td>WhatsApp Business API</td><td class="usd-col">$100 - $250</td><td class="lkr-col">~33,500 - 83,750</td></tr>
+              <tr><td>Accounting software integration</td><td class="usd-col">$80 - $200</td><td class="lkr-col">~26,800 - 67,000</td></tr>
+              <tr><td>Custom API integration</td><td class="usd-col">$100 - $400</td><td class="lkr-col">~33,500 - 134,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Add-on Notes -->
+      <div class="info-block note fade-in">
+        <strong><i class="ph ph-info"></i> Notes</strong>
+        <ul>
+          <li>Third-party subscription costs (Mailchimp, Tidio, etc.) are paid by the client separately</li>
+          <li>Prices above are for setup/development only</li>
+          <li>Bundling 3+ add-ons: 10% - 15% discount can be offered</li>
+          <li>Complex integrations may require a custom quote</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MONTHLY MAINTENANCE ========== -->
+  <section id="maintenance">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Monthly Maintenance Plans</h2>
+      </div>
+
+      <div class="maintenance-grid">
+        <!-- Basic -->
+        <div class="maintenance-card fade-in">
+          <h3>Basic Plan</h3>
+          <div class="maintenance-price usd-price">$50 - $100<span style="font-size:0.85rem;font-weight:400;color:var(--text-muted)">/mo</span></div>
+          <div class="maintenance-price lkr-price" style="display:none;">~16,750 - 33,500 LKR<span style="font-size:0.85rem;font-weight:400;color:var(--text-muted)">/mo</span></div>
+          <div class="maintenance-price-lkr usd-price">~16,750 - 33,500 LKR</div>
+          <ul class="maintenance-features">
+            <li>Software/plugin updates</li>
+            <li>Weekly backups</li>
+            <li>Uptime monitoring</li>
+            <li>Security patches</li>
+            <li>Up to 1 hour of small content edits per month</li>
+            <li>Email support (48hr response)</li>
+          </ul>
+        </div>
+
+        <!-- Standard -->
+        <div class="maintenance-card featured fade-in">
+          <h3>Standard Plan</h3>
+          <div class="maintenance-price usd-price">$100 - $250<span style="font-size:0.85rem;font-weight:400;color:var(--text-muted)">/mo</span></div>
+          <div class="maintenance-price lkr-price" style="display:none;">~33,500 - 83,750 LKR<span style="font-size:0.85rem;font-weight:400;color:var(--text-muted)">/mo</span></div>
+          <div class="maintenance-price-lkr usd-price">~33,500 - 83,750 LKR</div>
+          <ul class="maintenance-features">
+            <li>Everything in Basic +</li>
+            <li>Daily backups</li>
+            <li>Security hardening and malware scans</li>
+            <li>Monthly performance report (speed, uptime, traffic)</li>
+            <li>Up to 3 hours of edits/fixes per month</li>
+            <li>Bug fixes and broken link checks</li>
+            <li>Priority email support (24hr response)</li>
+          </ul>
+        </div>
+
+        <!-- Pro -->
+        <div class="maintenance-card fade-in">
+          <h3>Pro Plan</h3>
+          <div class="maintenance-price usd-price">$250 - $500<span style="font-size:0.85rem;font-weight:400;color:var(--text-muted)">/mo</span></div>
+          <div class="maintenance-price lkr-price" style="display:none;">~83,750 - 167,500 LKR<span style="font-size:0.85rem;font-weight:400;color:var(--text-muted)">/mo</span></div>
+          <div class="maintenance-price-lkr usd-price">~83,750 - 167,500 LKR</div>
+          <ul class="maintenance-features">
+            <li>Everything in Standard +</li>
+            <li>Real-time backups</li>
+            <li>Speed and performance optimization</li>
+            <li>SEO monitoring and adjustments</li>
+            <li>Up to 6 hours of edits/new features per month</li>
+            <li>Analytics and conversion reporting</li>
+            <li>Priority support (same day response)</li>
+            <li>Staging environment for testing changes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-block note fade-in">
+        <strong><i class="ph ph-info"></i> Notes</strong>
+        <ul>
+          <li>Work beyond the included hours is billed separately</li>
+          <li>Hosting is NOT included in maintenance (billed separately)</li>
+          <li>New pages or major features are billed as separate projects</li>
+          <li>30-day cancellation notice required</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ADMIN ROLES ========== -->
+  <section id="admin">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Admin Roles and Access Control</h2>
+      </div>
+
+      <div class="sub-section fade-in">
+        <h3>Who is the admin?</h3>
+        <p>The developer holds <strong>Super Admin</strong> access. The client gets a <strong>Client Admin</strong> role.</p>
+      </div>
+
+      <div class="sub-section fade-in">
+        <h3>Role Breakdown</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Access Level</th>
+                <th>Developer</th>
+                <th>Client</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Source code</td><td class="cell-success">Full access</td><td class="cell-danger">No access</td></tr>
+              <tr><td>Server/hosting</td><td class="cell-success">Full access</td><td class="cell-danger">No access</td></tr>
+              <tr><td>Database</td><td class="cell-success">Full access</td><td class="cell-danger">No access</td></tr>
+              <tr><td>Domain/DNS</td><td class="cell-success">Full access</td><td class="cell-warning">View only (or shared)</td></tr>
+              <tr><td>Content editing</td><td class="cell-success">Full access</td><td class="cell-success">Full access</td></tr>
+              <tr><td>Media uploads</td><td class="cell-success">Full access</td><td class="cell-success">Full access</td></tr>
+              <tr><td>User management</td><td class="cell-success">Full access</td><td class="cell-warning">Limited (own staff only)</td></tr>
+              <tr><td>Plugin/theme updates</td><td class="cell-success">Full access</td><td class="cell-danger">No access</td></tr>
+              <tr><td>Analytics</td><td class="cell-success">Full access</td><td class="cell-warning">View only</td></tr>
+              <tr><td>Payment gateway settings</td><td class="cell-success">Full access</td><td class="cell-warning">View only</td></tr>
+              <tr><td>Backups</td><td class="cell-success">Full access</td><td class="cell-danger">No access</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sub-section fade-in">
+        <h3>Why this matters</h3>
+        <ul class="notes-list">
+          <li>Developer maintains control over the codebase and infrastructure</li>
+          <li>Client can update their own text, images, and basic content</li>
+          <li>Prevents accidental changes that could break the site</li>
+          <li>If the client wants full ownership, everything can be transferred at project handoff (handover fee applies)</li>
+        </ul>
+      </div>
+
+      <div class="sub-section fade-in">
+        <h3>Handover Options</h3>
+        <div class="info-block recommend" style="margin-bottom:1.5rem;">
+          <strong><i class="ph ph-check-circle"></i> Partial Handover (all packages)</strong>
+          <p>Content admin access only - Included in project</p>
+        </div>
+
+        <h4>Full Handover</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">Source code, hosting, domain, database, all credentials, documentation</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Package</th>
+                <th class="usd-col">Handover Fee (USD)</th>
+                <th class="lkr-col">Handover Fee (LKR)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Starter</td><td class="usd-col">$50 - $100</td><td class="lkr-col">~16,750 - 33,500</td></tr>
+              <tr><td>Digital Presence</td><td class="usd-col">$100 - $150</td><td class="lkr-col">~33,500 - 50,250</td></tr>
+              <tr><td>Business Standard</td><td class="usd-col">$150 - $250</td><td class="lkr-col">~50,250 - 83,750</td></tr>
+              <tr><td>Business Pro</td><td class="usd-col">$250 - $400</td><td class="lkr-col">~83,750 - 134,000</td></tr>
+              <tr><td>E-Commerce</td><td class="usd-col">$400 - $600</td><td class="lkr-col">~134,000 - 201,000</td></tr>
+              <tr><td>E-Commerce Pro</td><td class="usd-col">$600 - $1,000</td><td class="lkr-col">~201,000 - 335,000</td></tr>
+              <tr><td>Custom Web Application</td><td class="usd-col">$1,000 - $2,000</td><td class="lkr-col">~335,000 - 670,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DISCLAIMER ========== -->
+  <section class="disclaimer">
+    <div class="container">
+      <div class="disclaimer-box fade-in">
+        <i class="ph ph-info disclaimer-icon"></i>
+        <p><strong>Important Note:</strong> Prices are calculated in USD. Final LKR conversion is based on the exchange rate at the time of payment. Prices may adjust slightly based on currency fluctuations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer fade-in">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom: 1rem; color: var(--text-heading);">
+            <span class="nav-logo-icon"><i class="ph ph-rocket"></i></span>
+            Elevate Digital
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 250px; line-height: 1.6;">Premium web development, transparent pricing, and tailored digital solutions for modern businesses.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#components">Component Pricing</a></li>
+            <li><a href="#packages">Project Packages</a></li>
+            <li><a href="#addons">Add-Ons</a></li>
+            <li><a href="#maintenance">Maintenance</a></li>
+            <li><a href="#admin">Admin Roles</a></li>
+          </ul>
+        </div>
+        <div class="footer-stack">
+          <h4>Build Stack</h4>
+          <ul>
+            <li><i class="ph ph-file-html"></i> HTML5</li>
+            <li><i class="ph ph-file-css"></i> CSS3 (Custom Properties)</li>
+            <li><i class="ph ph-file-code"></i> Vanilla JavaScript</li>
+            <li><i class="ph ph-paint-brush"></i> Phosphor Icons</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Elevate Digital. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

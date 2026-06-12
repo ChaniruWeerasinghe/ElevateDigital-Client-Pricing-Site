@@ -1295,8 +1295,8 @@ td:first-child {
   }
 
   .exchange-badge {
-    flex-direction: column;
-    gap: 0.35rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
   }
 
   .package-card {

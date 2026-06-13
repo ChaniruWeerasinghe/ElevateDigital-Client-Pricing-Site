@@ -1,0 +1,256 @@
+/* ============================================
+   ADMIN CRM STYLES
+   ============================================ */
+
+body {
+  background-color: var(--bg-secondary);
+}
+
+/* ---------- Login Section ---------- */
+.admin-login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-card {
+  background: var(--bg-card);
+  padding: 3rem 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid var(--border);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header .logo-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 1.25rem;
+  background: var(--accent-gradient);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.75rem;
+  box-shadow: var(--shadow-glow);
+}
+
+.login-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-header h2::after {
+  display: none;
+}
+
+.login-header p {
+  font-size: 0.9rem;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  margin-bottom: 0.5rem;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ---------- Dashboard ---------- */
+.admin-dashboard-container {
+  min-height: 100vh;
+}
+
+.admin-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  font-size: 1.1rem;
+}
+
+.nav-brand .logo-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--accent-gradient);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- Stats Grid ---------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: transform var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  line-height: 1.2;
+}
+
+/* ---------- Table Adjustments ---------- */
+.admin-dashboard-container .table-wrapper {
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-paid {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.status-due {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.status-overdue {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.client-info-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.client-name {
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.client-contact {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-mark-paid {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.btn-mark-paid:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-mark-paid:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

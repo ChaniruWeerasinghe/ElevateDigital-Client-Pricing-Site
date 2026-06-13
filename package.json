@@ -1,0 +1,25 @@
+{
+  "name": "pricing-site",
+  "version": "1.0.0",
+  "description": "This is the custom-built pricing and services website for Elevate Digital. It is designed to provide clear, transparent pricing packages, components, add-ons, and maintenance plans for clients without relying on external content management systems like WordPress.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChaniruWeerasinghe/ElevateDigital-Client-Pricing-Site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChaniruWeerasinghe/ElevateDigital-Client-Pricing-Site/issues"
+  },
+  "homepage": "https://github.com/ChaniruWeerasinghe/ElevateDigital-Client-Pricing-Site#readme",
+  "dependencies": {
+    "firebase": "^12.14.0",
+    "firebase-admin": "^14.0.0",
+    "nodemailer": "^8.0.11"
+  }
+}

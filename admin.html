@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin CRM | Elevate Digital</title>
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+  <!-- Login Section -->
+  <div class="admin-login-container" id="login-section">
+    <div class="login-card fade-in">
+      <div class="login-header">
+        <div class="logo-icon"><i class="ph-fill ph-lock-key"></i></div>
+        <h2>Admin Portal</h2>
+        <p>Login to manage client subscriptions.</p>
+      </div>
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="login-email" required placeholder="admin@elevatedigital.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" required placeholder="••••••••">
+        </div>
+        <p id="login-error" class="validation-msg error"></p>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" id="btn-login">Login <i class="ph ph-sign-in"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard Section (Hidden until logged in) -->
+  <div class="admin-dashboard-container" id="dashboard-section" style="display: none;">
+    <!-- Top Nav -->
+    <nav class="admin-nav">
+      <div class="nav-brand">
+        <div class="logo-icon"><i class="ph-fill ph-rocket-launch"></i></div>
+        <span>Elevate Digital CRM</span>
+      </div>
+      <button class="btn btn-secondary" id="btn-logout"><i class="ph ph-sign-out"></i> Logout</button>
+    </nav>
+
+    <div class="dashboard-content">
+      <div class="dashboard-header">
+        <h1>Client Subscriptions</h1>
+        <p>Track maintenance payments and upcoming renewals.</p>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="color: var(--accent); background: var(--accent-glow);"><i class="ph-fill ph-users"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Total Active Clients</span>
+            <span class="stat-value" id="stat-total">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color: var(--warning); background: rgba(251, 191, 36, 0.1);"><i class="ph-fill ph-clock"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Due Soon (≤ 10 Days)</span>
+            <span class="stat-value" id="stat-due">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color: var(--danger); background: rgba(248, 113, 113, 0.1);"><i class="ph-fill ph-warning-circle"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Overdue</span>
+            <span class="stat-value" id="stat-overdue">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clients Table -->
+      <div class="table-wrapper">
+        <table id="clients-table">
+          <thead>
+            <tr>
+              <th>Client Name</th>
+              <th>Contact Info</th>
+              <th>Package & Cycle</th>
+              <th>Next Due Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="clients-tbody">
+            <!-- Populated by JS -->
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 3rem;">
+                <i class="ph ph-spinner ph-spin" style="font-size: 2rem; color: var(--accent);"></i>
+                <p style="margin-top: 1rem;">Loading clients...</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts (Modular Version v9/v10 compatible approach via imports in main JS file) -->
+  <script type="module" src="js/admin.js"></script>
+</body>
+
+</html>

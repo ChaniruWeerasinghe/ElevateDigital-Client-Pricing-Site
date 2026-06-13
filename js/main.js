@@ -128,4 +128,314 @@
   }
   initScrollAnimations();
 
+  // ========== MODAL & FORM LOGIC ==========
+  const modal = document.getElementById('plan-modal');
+  const modalClose = document.getElementById('modal-close');
+  const planButtons = document.querySelectorAll('.select-plan-btn');
+  const selectedPlanText = document.getElementById('modal-selected-plan');
+  const packageNameInput = document.getElementById('form-package-name');
+  
+  // Custom Select Elements
+  const customSelectWrapper = document.getElementById('billing-cycle-select');
+  const selectTrigger = customSelectWrapper?.querySelector('.custom-select-trigger');
+  const customOptions = customSelectWrapper?.querySelectorAll('.custom-option');
+  const hiddenBillingInput = document.getElementById('form-billing-cycle');
+
+  // Form Elements
+  const planForm = document.getElementById('plan-form');
+  const inputName = document.getElementById('form-name');
+  const inputEmail = document.getElementById('form-email');
+  const inputPhone = document.getElementById('form-phone');
+  
+  // Validation Messages
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  const phoneError = document.getElementById('phone-error');
+
+  // Coupon Elements
+  const inputCoupon = document.getElementById('form-coupon');
+  const btnApplyCoupon = document.getElementById('apply-coupon-btn');
+  const couponMsg = document.getElementById('coupon-msg');
+  const couponDiscountRow = document.getElementById('coupon-discount-row');
+  const couponDiscountAmt = document.getElementById('coupon-discount-amt');
+  const totalDiscountDisplay = document.getElementById('total-discount-display');
+
+  let currentBillingDiscount = 0; // percentage
+  let currentCouponDiscount = 0; // percentage
+
+  // --- Modal Open/Close ---
+  if (modal) {
+    planButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const planName = btn.getAttribute('data-plan');
+        selectedPlanText.textContent = planName;
+        packageNameInput.value = planName;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+      });
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close on clicking outside the modal
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // --- Custom Dropdown Logic ---
+  if (customSelectWrapper) {
+    selectTrigger.addEventListener('click', function () {
+      customSelectWrapper.classList.toggle('open');
+    });
+
+    customOptions.forEach(option => {
+      option.addEventListener('click', function () {
+        // Remove selected class from all
+        customOptions.forEach(opt => opt.classList.remove('selected'));
+        // Add to clicked
+        this.classList.add('selected');
+        
+        // Update trigger text & hidden input
+        const value = this.getAttribute('data-value');
+        selectTrigger.textContent = this.textContent;
+        hiddenBillingInput.value = value;
+        
+        // Update billing discount state
+        if (value === 'monthly') currentBillingDiscount = 0;
+        else if (value === 'semi-annual') currentBillingDiscount = 10;
+        else if (value === 'annual') currentBillingDiscount = 20;
+
+        updateTotalDiscount();
+        customSelectWrapper.classList.remove('open');
+      });
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', function (e) {
+      if (!customSelectWrapper.contains(e.target)) {
+        customSelectWrapper.classList.remove('open');
+      }
+    });
+  }
+
+  // --- Real-time Validation ---
+  
+  // 1. Name Validation (No numbers allowed)
+  inputName.addEventListener('input', function() {
+    const value = this.value;
+    const hasNumbers = /\d/.test(value);
+    if (hasNumbers) {
+      this.classList.add('error');
+      this.classList.remove('success');
+      nameError.textContent = "Names cannot contain numbers.";
+      nameError.className = "validation-msg error";
+    } else if (value.trim().length > 0) {
+      this.classList.remove('error');
+      this.classList.add('success');
+      nameError.textContent = "";
+    } else {
+      this.classList.remove('error', 'success');
+      nameError.textContent = "";
+    }
+  });
+
+  // 2. Email Validation
+  inputEmail.addEventListener('input', function() {
+    const value = this.value;
+    // Standard email regex
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    
+    if (value.length > 0 && !isValidEmail) {
+      this.classList.add('error');
+      this.classList.remove('success');
+      emailError.textContent = "Please enter a valid email address.";
+      emailError.className = "validation-msg error";
+    } else if (isValidEmail) {
+      this.classList.remove('error');
+      this.classList.add('success');
+      emailError.textContent = "";
+    } else {
+      this.classList.remove('error', 'success');
+      emailError.textContent = "";
+    }
+  });
+
+  // 3. Phone Validation (Sri Lankan + Foreign)
+  inputPhone.addEventListener('input', function() {
+    const value = this.value.trim();
+    // Match Sri Lankan: 0771234567, 771234567, +94771234567
+    // Match Foreign: general international format (starts with + and 10-15 digits)
+    const isLankan = /^(0\d{9}|\d{9}|\+94\d{9})$/.test(value);
+    const isForeign = /^\+\d{10,15}$/.test(value);
+
+    if (value.length > 0 && !isLankan && !isForeign) {
+      this.classList.add('error');
+      this.classList.remove('success');
+      phoneError.textContent = "Invalid phone number format.";
+      phoneError.className = "validation-msg error";
+    } else if (isLankan || isForeign) {
+      this.classList.remove('error');
+      this.classList.add('success');
+      phoneError.textContent = "";
+    } else {
+      this.classList.remove('error', 'success');
+      phoneError.textContent = "";
+    }
+  });
+
+  // --- Coupon Logic ---
+  // Hardcoded frontend mock coupons (will be verified securely on backend)
+  const MOCK_COUPONS = {
+    'FAMILY20': 20,
+    'ELEVATE10': 10,
+    'START50': 50
+  };
+
+  btnApplyCoupon.addEventListener('click', () => {
+    const code = inputCoupon.value.trim().toUpperCase();
+    if (!code) return;
+
+    if (MOCK_COUPONS[code]) {
+      currentCouponDiscount = MOCK_COUPONS[code];
+      inputCoupon.classList.add('success');
+      inputCoupon.classList.remove('error');
+      couponMsg.textContent = "Coupon applied successfully!";
+      couponMsg.className = "validation-msg success";
+      
+      couponDiscountRow.style.display = 'flex';
+      couponDiscountAmt.textContent = `-${currentCouponDiscount}%`;
+    } else {
+      currentCouponDiscount = 0;
+      inputCoupon.classList.add('error');
+      inputCoupon.classList.remove('success');
+      couponMsg.textContent = "Invalid or expired coupon code.";
+      couponMsg.className = "validation-msg error";
+      
+      couponDiscountRow.style.display = 'none';
+    }
+    updateTotalDiscount();
+  });
+
+  // Automatically reset coupon if input is cleared
+  inputCoupon.addEventListener('input', function() {
+    if (this.value.trim() === '') {
+      currentCouponDiscount = 0;
+      this.classList.remove('error', 'success');
+      couponMsg.textContent = "";
+      couponDiscountRow.style.display = 'none';
+      updateTotalDiscount();
+    }
+  });
+
+  function updateTotalDiscount() {
+    const total = currentBillingDiscount + currentCouponDiscount;
+    // Cap total discount at a reasonable amount (e.g. 100%)
+    const finalTotal = Math.min(total, 100);
+    totalDiscountDisplay.textContent = `${finalTotal}%`;
+    
+    if (finalTotal > 0) {
+      totalDiscountDisplay.classList.add('cell-success');
+    } else {
+      totalDiscountDisplay.classList.remove('cell-success');
+    }
+  }
+
+  // --- Form Submission ---
+  if (planForm) {
+    planForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Force check validations before submitting
+      if (inputName.classList.contains('error') || 
+          inputEmail.classList.contains('error') || 
+          inputPhone.classList.contains('error')) {
+        // Using a professional custom UI notification, NOT alert()
+        showToast("Please fix the errors in the form before submitting.", "error");
+        return;
+      }
+
+      const submitBtn = document.getElementById('submit-plan-btn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Processing...';
+      submitBtn.disabled = true;
+
+      const formData = {
+        name: inputName.value.trim(),
+        email: inputEmail.value.trim(),
+        phone: inputPhone.value.trim(),
+        packageName: packageNameInput.value,
+        billingCycle: hiddenBillingInput.value,
+        couponCode: inputCoupon.value.trim().toUpperCase()
+      };
+
+      try {
+        const response = await fetch('/api/submit-plan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showToast("Request submitted successfully! We'll be in touch soon.", "success");
+          planForm.reset();
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        } else {
+          showToast(data.message || "Something went wrong. Please try again.", "error");
+        }
+      } catch (error) {
+        showToast("Network error. Could not connect to the server.", "error");
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  // --- Custom Toast Notification ---
+  function showToast(message, type = "success") {
+    // Remove existing toast if any
+    const existing = document.getElementById('custom-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'custom-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '2rem';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#10b981' : '#ef4444';
+    toast.style.color = '#fff';
+    toast.style.padding = '1rem 2rem';
+    toast.style.borderRadius = '50px';
+    toast.style.fontWeight = '600';
+    toast.style.fontSize = '0.95rem';
+    toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.innerHTML = `<i class="ph ${type === 'success' ? 'ph-check-circle' : 'ph-warning-circle'}"></i> ${message}`;
+    
+    document.body.appendChild(toast);
+
+    // Animate in
+    setTimeout(() => {
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    }, 10);
+
+    // Animate out after 4 seconds
+    setTimeout(() => {
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+      setTimeout(() => toast.remove(), 400);
+    }, 4000);
+  }
+
 })();

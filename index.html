@@ -351,6 +351,7 @@
               <span class="value lkr-price" style="display:none;">~50,250 - 83,750 LKR</span>
             </div>
           </div>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Starter">Select Package</button>
         </div>
 
         <!-- Package 2 -->
@@ -379,6 +380,7 @@
               <span class="value lkr-price" style="display:none;">~83,750 - 201,000 LKR</span>
             </div>
           </div>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Digital Presence">Select Package</button>
         </div>
 
         <!-- Package 3 -->
@@ -409,6 +411,7 @@
               <span class="value lkr-price" style="display:none;">~234,500 - 502,500 LKR</span>
             </div>
           </div>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Business Standard">Select Package</button>
         </div>
 
         <!-- Package 4 -->
@@ -442,6 +445,7 @@
               <span class="value lkr-price" style="display:none;">~502,500 - 1,005,000 LKR</span>
             </div>
           </div>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Business Pro">Select Package</button>
         </div>
 
         <!-- Package 5 -->
@@ -476,6 +480,7 @@
               <span class="value lkr-price" style="display:none;">~670,000 - 1,675,000 LKR</span>
             </div>
           </div>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="E-Commerce">Select Package</button>
         </div>
 
         <!-- Package 6 -->
@@ -510,6 +515,7 @@
               <span class="value lkr-price" style="display:none;">~1,675,000 - 2,680,000 LKR</span>
             </div>
           </div>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="E-Commerce Pro">Select Package</button>
         </div>
 
         <!-- Package 7 -->
@@ -545,6 +551,7 @@
               <span class="value lkr-price" style="display:none;">~1,675,000 - 5,025,000+ LKR</span>
             </div>
           </div>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Custom Web Application">Select Package</button>
         </div>
 
       </div>
@@ -1056,6 +1063,11 @@
         <h2>Monthly Maintenance Plans</h2>
       </div>
 
+      <div class="info-block recommend fade-in" style="margin-bottom: 2rem;">
+        <strong><i class="ph ph-shield-check"></i> Post-Launch Warranty (First 30 Days Free)</strong>
+        <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Every project includes <strong>30 days of free technical support and bug fixing</strong> immediately following the launch. To guarantee ongoing security, backups, and uptime, a monthly maintenance plan officially begins billing on <strong>Day 31</strong>. <br><br><em><span style="color: var(--text-warning);"><i class="ph ph-warning-circle"></i> Note:</span> If you opt out of maintenance, you assume full responsibility for the website's security and performance. Any future emergency fixes will be subject to premium hourly rates.</em></p>
+      </div>
+
       <div class="maintenance-grid">
         <!-- Basic -->
         <div class="maintenance-card fade-in">
@@ -1066,7 +1078,7 @@
               style="font-size:0.85rem;font-weight:400;color:var(--text-muted)">/mo</span></div>
           <div class="maintenance-price-lkr usd-price">~16,750 - 33,500 LKR</div>
           <ul class="maintenance-features">
-            <li>Software/plugin updates</li>
+            <li>Core system and dependency updates</li>
             <li>Weekly backups</li>
             <li>Uptime monitoring</li>
             <li>Security patches</li>
@@ -1113,6 +1125,16 @@
             <li>Staging environment for testing changes</li>
           </ul>
         </div>
+      </div>
+
+      <div class="info-block recommend fade-in" style="margin-bottom: 1.5rem;">
+        <strong><i class="ph ph-tag"></i> Billing Cycles & Discounts</strong>
+        <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">To incentivize long-term commitments, we offer discounts based on your chosen billing cycle:</p>
+        <ul style="margin-top: 0.5rem; margin-left: 1.5rem; font-size: 0.95rem;">
+          <li><strong>Monthly:</strong> Standard Price</li>
+          <li><strong>6-Month (Semi-Annual):</strong> 10% Discount if paid upfront</li>
+          <li><strong>12-Month (Annual):</strong> 20% Discount if paid upfront <em>(Pay for 10 months, get 2 free)</em></li>
+        </ul>
       </div>
 
       <div class="info-block note fade-in">
@@ -1188,7 +1210,7 @@
                 <td class="cell-warning">Limited (own staff only)</td>
               </tr>
               <tr>
-                <td>Plugin/theme updates</td>
+                <td>Core system & dependency updates</td>
                 <td class="cell-success">Full access</td>
                 <td class="cell-danger">No access</td>
               </tr>
@@ -1334,6 +1356,76 @@
       </div>
     </div>
   </footer>
+
+  <!-- ========== MODAL FORM ========== -->
+  <div class="modal-overlay" id="plan-modal">
+    <div class="modal-container fade-in">
+      <button class="modal-close" id="modal-close" aria-label="Close modal"><i class="ph ph-x"></i></button>
+      <div class="modal-header">
+        <h2>Complete Your Request</h2>
+        <p>You selected: <strong id="modal-selected-plan" style="color: var(--accent);">Package</strong></p>
+      </div>
+      
+      <form id="plan-form" class="plan-form">
+        <input type="hidden" id="form-package-name" name="packageName">
+        
+        <div class="form-group">
+          <label for="form-name">Full Name</label>
+          <input type="text" id="form-name" name="name" required placeholder="John Doe">
+          <span class="validation-msg" id="name-error"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="form-email">Email Address</label>
+          <input type="email" id="form-email" name="email" required placeholder="john@example.com">
+          <span class="validation-msg" id="email-error"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="form-phone">Phone Number</label>
+          <input type="tel" id="form-phone" name="phone" required placeholder="0771234567 or +94771234567">
+          <span class="validation-msg" id="phone-error"></span>
+        </div>
+        
+        <div class="form-group">
+          <label>Maintenance Billing Cycle</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="billing-cycle-select">
+              <span class="custom-select-trigger">Monthly (0% Discount)</span>
+              <div class="custom-options">
+                <span class="custom-option selected" data-value="monthly">Monthly (0% Discount)</span>
+                <span class="custom-option" data-value="semi-annual">6-Month (10% Discount)</span>
+                <span class="custom-option" data-value="annual">12-Month (20% Discount)</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="form-billing-cycle" name="billingCycle" value="monthly">
+        </div>
+        
+        <div class="form-group">
+          <label for="form-coupon">Coupon Code (Optional)</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="form-coupon" name="coupon" placeholder="Enter code" style="text-transform: uppercase;">
+            <button type="button" id="apply-coupon-btn" class="btn btn-secondary" style="white-space: nowrap; padding: 0.8rem 1rem;">Apply</button>
+          </div>
+          <span class="validation-msg" id="coupon-msg"></span>
+        </div>
+
+        <div class="form-summary">
+          <div class="summary-row" id="coupon-discount-row" style="display: none;">
+            <span>Coupon Discount</span>
+            <span class="cell-success" id="coupon-discount-amt">-0%</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total Discount</span>
+            <span id="total-discount-display">0%</span>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" id="submit-plan-btn" style="width: 100%; margin-top: 1.5rem;">Send Request <i class="ph ph-paper-plane-tilt"></i></button>
+      </form>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

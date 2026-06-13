@@ -349,7 +349,11 @@ section {
 
 /* ---------- Hero Section ---------- */
 .hero {
-  padding: 10rem 0 5rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -712,12 +716,11 @@ td:first-child {
 }
 
 .package-features li {
-  padding: 0.25rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
   font-size: 0.82rem;
   color: var(--text-secondary);
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  position: relative;
+  display: block;
 }
 
 .package-features li::before {
@@ -725,8 +728,9 @@ td:first-child {
   color: var(--success);
   font-weight: 700;
   font-size: 0.7rem;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
 }
 
 .package-features li.inherited {
@@ -932,12 +936,11 @@ td:first-child {
 }
 
 .maintenance-features li {
-  padding: 0.3rem 0;
+  padding: 0.3rem 0 0.3rem 1.25rem;
   font-size: 0.85rem;
   color: var(--text-secondary);
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  position: relative;
+  display: block;
 }
 
 .maintenance-features li::before {
@@ -945,8 +948,9 @@ td:first-child {
   color: var(--success);
   font-weight: 700;
   font-size: 0.7rem;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
 }
 
 /* ---------- Roles Section ---------- */
@@ -1226,7 +1230,7 @@ td:first-child {
   }
 
   .hero {
-    padding: 10.5rem 0 3rem;
+    padding: 6rem 0 3rem;
   }
 
   section {
@@ -1417,4 +1421,33 @@ td:first-child {
   top: 0;
   color: var(--accent);
   font-weight: bold;
+}
+
+/* ---------- Glossary Links ---------- */
+.glossary-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+  transition: all var(--transition-fast);
+  cursor: help;
+  position: relative;
+  font-weight: 600;
+}
+
+.glossary-link:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Target Highlight ---------- */
+@keyframes targetPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  50% { box-shadow: 0 0 15px 0 rgba(37, 99, 235, 0.4); }
+  100% { box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08); }
+}
+
+.factor-card:target {
+  animation: targetPulse 1s ease-out forwards;
+  border-color: var(--accent);
+  background-color: var(--accent-glow);
 }

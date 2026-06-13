@@ -219,7 +219,7 @@ section {
 }
 
 .nav-inner {
-  max-width: 1000px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: 1.15rem 1.75rem;
   background: rgba(255, 255, 255, 0.75);
@@ -278,6 +278,7 @@ section {
   font-weight: 600;
   color: var(--text-secondary);
   border-radius: 100px;
+  white-space: nowrap;
   transition: all var(--transition-fast);
 }
 
@@ -1311,4 +1312,109 @@ td:first-child {
     padding: 0.6rem 0.85rem;
     font-size: 0.8rem;
   }
+}
+
+/* ---------- Factors Section ---------- */
+.factors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.factor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--card-padding);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.factor-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-light);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.factor-number {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 3.5rem;
+  font-weight: 800;
+  opacity: 0.05;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  transition: opacity 0.3s ease;
+}
+
+.factor-card:hover .factor-number {
+  opacity: 0.15;
+}
+
+.factor-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  display: inline-block;
+  color: var(--text-heading);
+}
+
+.factor-card h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 30px;
+  height: 2px;
+  background: var(--accent-gradient);
+  transition: width 0.3s ease;
+}
+
+.factor-card:hover h3::after {
+  width: 100%;
+}
+
+.factor-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.sub-points h4 {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.sub-points p {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-list {
+  list-style: none;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.feature-list li::before {
+  content: '\2192'; /* Right arrow */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: bold;
 }

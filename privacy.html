@@ -14,6 +14,13 @@
 
 <body>
 
+  <!-- ========== TOP BANNER ========== -->
+  <div class="top-banner" id="top-banner">
+    <div class="container">
+      <p>Looking to upgrade your current website? <a href="index.html#addons">Explore our individual Add-Ons</a> <i class="ph ph-arrow-right"></i></p>
+    </div>
+  </div>
+
   <!-- ========== NAVIGATION ========== -->
   <nav class="nav" id="main-nav">
     <div class="nav-inner">
@@ -22,17 +29,23 @@
         Elevate Digital
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="index.html#packages">Packages</a></li>
+        <li><a href="index.html#components">Components</a></li>
+        <li><a href="index.html#factors">Cost Factors</a></li>
+        <li><a href="index.html#packages">Packages ($)</a></li>
+        <li><a href="index.html#addons">Add-Ons</a></li>
         <li><a href="index.html#maintenance">Maintenance</a></li>
-        <li><a href="glossary.html">Glossary</a></li>
+        <li><a href="index.html#admin">Admin Roles</a></li>
       </ul>
+      <div class="currency-toggle-wrapper">
+        <span class="currency-label active" id="label-usd">USD</span>
+        <button class="currency-toggle" id="currency-toggle" aria-label="Toggle currency"></button>
+        <span class="currency-label" id="label-lkr">LKR</span>
+      </div>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
     </div>
   </nav>
 
-  <div style="padding-top: 100px;"></div>
-
-  <section class="container" style="max-width: 800px; margin: 0 auto 4rem;">
+  <section class="container" style="padding-top: 150px; padding-bottom: 4rem;">
     <div class="section-header fade-in" style="text-align: left;">
       <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Privacy Policy</h1>
       <p style="color: var(--text-muted);">Last Updated: June 2026</p>
@@ -82,14 +95,17 @@
             <span class="nav-logo-icon"><i class="ph ph-rocket"></i></span>
             Elevate Digital
           </a>
-          <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 250px; line-height: 1.6;">Premium web development, transparent pricing, and tailored digital solutions for modern businesses.</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 250px; line-height: 1.6;">Premium web
+            development, transparent pricing, and tailored digital solutions for modern businesses.</p>
         </div>
         <div class="footer-nav">
           <h4>Navigation</h4>
           <ul>
+            <li><a href="index.html#components">Component Pricing</a></li>
             <li><a href="index.html#packages">Project Packages</a></li>
             <li><a href="index.html#addons">Add-Ons</a></li>
             <li><a href="index.html#maintenance">Maintenance</a></li>
+            <li><a href="index.html#admin">Admin Roles</a></li>
             <li><a href="glossary.html">Glossary of Terms</a></li>
           </ul>
         </div>
@@ -97,8 +113,8 @@
           <h4>Build Stack</h4>
           <ul>
             <li><i class="ph ph-file-html"></i> HTML5</li>
-            <li><i class="ph ph-file-css"></i> CSS3</li>
-            <li><i class="ph ph-file-code"></i> Vanilla JS</li>
+            <li><i class="ph ph-file-css"></i> CSS3 (Custom Properties)</li>
+            <li><i class="ph ph-file-code"></i> Vanilla JavaScript</li>
             <li><i class="ph ph-paint-brush"></i> Phosphor Icons</li>
           </ul>
         </div>

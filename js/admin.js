@@ -34,20 +34,28 @@ const statDue = document.getElementById('stat-due');
 const statOverdue = document.getElementById('stat-overdue');
 
 // --- Auth State Listener ---
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
-    // Security Authorization Check: Only allow specific email
-    if (user.email === 'chanirub2003@gmail.com') {
-      loginSection.style.display = 'none';
-      dashboardSection.style.display = 'block';
-      loadClients();
-    } else {
-      // Kick out unauthorized users
-      signOut(auth);
-      loginSection.style.display = 'flex';
-      dashboardSection.style.display = 'none';
-      loginError.style.color = "var(--danger)";
-      loginError.textContent = "Access Denied. You are not an authorized administrator.";
+    try {
+      // Security Authorization Check: Use Firebase Custom Claims
+      // Force refresh the token once just in case the claim was just added
+      const idTokenResult = await user.getIdTokenResult(true);
+      
+      if (idTokenResult.claims.admin === true) {
+        loginSection.style.display = 'none';
+        dashboardSection.style.display = 'block';
+        loadClients();
+      } else {
+        // Kick out unauthorized users
+        await signOut(auth);
+        loginSection.style.display = 'flex';
+        dashboardSection.style.display = 'none';
+        loginError.style.color = "var(--danger)";
+        loginError.textContent = "Access Denied. You do not have Admin privileges.";
+      }
+    } catch (err) {
+      console.error("Error verifying admin claim:", err);
+      loginError.textContent = "Security verification failed.";
     }
   } else {
     // User is signed out

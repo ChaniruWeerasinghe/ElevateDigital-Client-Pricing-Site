@@ -1092,6 +1092,7 @@
             <li>Up to 1 hour of small content edits per month</li>
             <li>Email support (48hr response)</li>
           </ul>
+          <button class="btn btn-secondary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Basic Maintenance" data-type="maintenance">Select Plan</button>
         </div>
 
         <!-- Standard -->
@@ -1111,6 +1112,7 @@
             <li>Bug fixes and broken link checks</li>
             <li>Priority email support (24hr response)</li>
           </ul>
+          <button class="btn btn-primary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Standard Maintenance" data-type="maintenance">Select Plan</button>
         </div>
 
         <!-- Pro -->
@@ -1131,6 +1133,7 @@
             <li>Priority support (same day response)</li>
             <li>Staging environment for testing changes</li>
           </ul>
+          <button class="btn btn-secondary select-plan-btn" style="width: 100%; margin-top: 1.5rem;" data-plan="Pro Maintenance" data-type="maintenance">Select Plan</button>
         </div>
       </div>
 
@@ -1375,6 +1378,7 @@
       
       <form id="plan-form" class="plan-form">
         <input type="hidden" id="form-package-name" name="packageName">
+        <input type="hidden" id="form-plan-type" name="planType" value="package">
         
         <div class="form-group">
           <label for="form-name">Full Name</label>
@@ -1392,6 +1396,22 @@
           <label for="form-phone">Phone Number</label>
           <input type="tel" id="form-phone" name="phone" required placeholder="0771234567 or +94771234567">
           <span class="validation-msg" id="phone-error"></span>
+        </div>
+        
+        <div class="form-group" id="maintenance-tier-group">
+          <label>Choose Maintenance Plan (Starts after free warranty)</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="maintenance-tier-select">
+              <span class="custom-select-trigger">None (I will handle it myself)</span>
+              <div class="custom-options">
+                <span class="custom-option selected" data-value="none">None (I will handle it myself)</span>
+                <span class="custom-option" data-value="Basic Maintenance">Basic Plan</span>
+                <span class="custom-option" data-value="Standard Maintenance">Standard Plan</span>
+                <span class="custom-option" data-value="Pro Maintenance">Pro Plan</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="form-maintenance-tier" name="maintenanceTier" value="none">
         </div>
         
         <div class="form-group">

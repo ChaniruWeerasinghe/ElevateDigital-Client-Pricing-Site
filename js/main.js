@@ -135,11 +135,7 @@
   const selectedPlanText = document.getElementById('modal-selected-plan');
   const packageNameInput = document.getElementById('form-package-name');
   
-  // Custom Select Elements
-  const customSelectWrapper = document.getElementById('billing-cycle-select');
-  const selectTrigger = customSelectWrapper?.querySelector('.custom-select-trigger');
-  const customOptions = customSelectWrapper?.querySelectorAll('.custom-option');
-  const hiddenBillingInput = document.getElementById('form-billing-cycle');
+  // Custom Select Elements handled generically below
 
   // Form Elements
   const planForm = document.getElementById('plan-form');
@@ -163,13 +159,29 @@
   let currentBillingDiscount = 0; // percentage
   let currentCouponDiscount = 0; // percentage
 
+  const planTypeInput = document.getElementById('form-plan-type');
+  const modalHeaderTitle = document.querySelector('.modal-header h2');
+  const maintenanceTierGroup = document.getElementById('maintenance-tier-group');
+
   // --- Modal Open/Close ---
   if (modal) {
     planButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
         const planName = btn.getAttribute('data-plan');
+        const planType = btn.getAttribute('data-type') || 'package';
+
         selectedPlanText.textContent = planName;
         packageNameInput.value = planName;
+        if (planTypeInput) planTypeInput.value = planType;
+        
+        if (planType === 'maintenance') {
+          modalHeaderTitle.textContent = "Request Maintenance";
+          maintenanceTierGroup.style.display = 'none';
+        } else {
+          modalHeaderTitle.textContent = "Complete Your Request";
+          maintenanceTierGroup.style.display = 'block';
+        }
+
         modal.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent background scroll
       });
@@ -190,40 +202,45 @@
   }
 
   // --- Custom Dropdown Logic ---
-  if (customSelectWrapper) {
-    selectTrigger.addEventListener('click', function () {
-      customSelectWrapper.classList.toggle('open');
+  const allSelectWrappers = document.querySelectorAll('.custom-select-wrapper');
+  
+  allSelectWrappers.forEach(wrapper => {
+    const trigger = wrapper.querySelector('.custom-select-trigger');
+    const options = wrapper.querySelectorAll('.custom-option');
+    const hiddenInput = wrapper.nextElementSibling;
+    
+    trigger.addEventListener('click', function () {
+      wrapper.classList.toggle('open');
     });
 
-    customOptions.forEach(option => {
+    options.forEach(option => {
       option.addEventListener('click', function () {
-        // Remove selected class from all
-        customOptions.forEach(opt => opt.classList.remove('selected'));
-        // Add to clicked
+        options.forEach(opt => opt.classList.remove('selected'));
         this.classList.add('selected');
         
-        // Update trigger text & hidden input
         const value = this.getAttribute('data-value');
-        selectTrigger.textContent = this.textContent;
-        hiddenBillingInput.value = value;
+        trigger.textContent = this.textContent;
+        if (hiddenInput && hiddenInput.tagName === 'INPUT') {
+           hiddenInput.value = value;
+        }
         
-        // Update billing discount state
-        if (value === 'monthly') currentBillingDiscount = 0;
-        else if (value === 'semi-annual') currentBillingDiscount = 5;
-        else if (value === 'annual') currentBillingDiscount = 10;
-
-        updateTotalDiscount();
-        customSelectWrapper.classList.remove('open');
+        if (hiddenInput && hiddenInput.id === 'form-billing-cycle') {
+           if (value === 'monthly') currentBillingDiscount = 0;
+           else if (value === 'semi-annual') currentBillingDiscount = 5;
+           else if (value === 'annual') currentBillingDiscount = 10;
+           updateTotalDiscount();
+        }
+        
+        wrapper.classList.remove('open');
       });
     });
 
-    // Close dropdown if clicked outside
     document.addEventListener('click', function (e) {
-      if (!customSelectWrapper.contains(e.target)) {
-        customSelectWrapper.classList.remove('open');
+      if (!wrapper.contains(e.target)) {
+        wrapper.classList.remove('open');
       }
     });
-  }
+  });
 
   // --- Real-time Validation ---
   
@@ -371,6 +388,8 @@
         email: inputEmail.value.trim(),
         phone: inputPhone.value.trim(),
         packageName: packageNameInput.value,
+        planType: document.getElementById('form-plan-type').value,
+        maintenanceTier: document.getElementById('form-maintenance-tier').value,
         billingCycle: hiddenBillingInput.value,
         couponCode: inputCoupon.value.trim().toUpperCase()
       };

@@ -380,6 +380,29 @@ These features can be added to any package tier. Prices are one-time setup fees 
 
 ---
 
+## Post-Launch Warranty (Free Maintenance)
+
+Every package includes a dedicated free technical support and bug fixing warranty immediately following the launch. The duration depends on the package size:
+
+- **Starter:** 30 Days Free Maintenance & Support
+- **Digital Presence:** 30 Days Free Maintenance & Support
+- **Business Standard:** 45 Days Free Maintenance & Support
+- **Business Pro:** 45 Days Free Maintenance & Support
+- **E-Commerce:** 60 Days Free Maintenance & Support
+- **E-Commerce Pro:** 90 Days Free Maintenance & Support
+- **Custom Web Application:** 90 Days Free Maintenance & Support
+
+During this warranty period, the client is fully covered. After the warranty expires, they must subscribe to a Monthly Maintenance Plan to retain ongoing security, updates, and active support.
+
+### Billing Cycles & Discounts
+
+To incentivize long-term commitments, we offer discounts based on the chosen billing cycle for maintenance:
+- **Monthly:** Standard Price
+- **6-Month (Semi-Annual):** 5% Discount if paid upfront
+- **12-Month (Annual):** 10% Discount if paid upfront
+
+---
+
 ## Admin Roles and Access Control
 
 ### Who is the admin?

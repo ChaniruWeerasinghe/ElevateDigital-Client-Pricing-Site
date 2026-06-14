@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { name, email, phone, packageName, billingCycle, couponCode } = req.body;
+    const { name, email, phone, packageName, planType, maintenanceTier, billingCycle, couponCode } = req.body;
 
     if (!name || !email || !phone || !packageName) {
       return res.status(400).json({ message: 'Missing required fields' });
@@ -74,7 +74,8 @@ module.exports = async (req, res) => {
     };
     
     // Default to 30 if somehow a weird package name gets through
-    const warrantyDays = WARRANTY_DAYS[packageName] || 30;
+    const isMaintenanceOnly = planType === 'maintenance';
+    const warrantyDays = isMaintenanceOnly ? 0 : (WARRANTY_DAYS[packageName] || 30);
 
     const now = new Date();
     const dueDate = new Date();
@@ -89,12 +90,14 @@ module.exports = async (req, res) => {
         email,
         phone,
         packageName,
+        planType: planType || 'package',
+        maintenanceTier: maintenanceTier || 'none',
         billingCycle,
         couponCode: couponCode || null,
         totalDiscount,
-        nextDueDate: Timestamp.fromDate(dueDate),
+        nextDueDate: isMaintenanceOnly ? null : Timestamp.fromDate(dueDate),
         createdAt: FieldValue.serverTimestamp(),
-        status: 'warranty'
+        status: isMaintenanceOnly ? 'active' : 'warranty'
       });
       clientId = docRef.id;
     }
@@ -102,11 +105,35 @@ module.exports = async (req, res) => {
     // 2. Send Emails via Nodemailer
     if (process.env.SMTP_USER) {
       // Email to Client
-      const clientMailOptions = {
-        from: `"Elevate Digital" <${process.env.SMTP_USER}>`,
-        to: email,
-        subject: `Your Web Development Package: ${packageName}`,
-        html: `
+      let clientSubject = '';
+      let clientHtml = '';
+      
+      if (isMaintenanceOnly) {
+        clientSubject = `Your Maintenance Plan: ${packageName}`;
+        clientHtml = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+            <h2 style="color: #10b981;">Maintenance Plan Activated!</h2>
+            <p>Hi ${name},</p>
+            <p>Thank you for returning to Elevate Digital. We've received your request to start the <strong>${packageName}</strong>.</p>
+            <p>We're thrilled to continue keeping your website secure, fast, and up-to-date. We will be in touch shortly to finalize the setup.</p>
+            
+            <div style="background: #f2fbf7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="margin-top: 0;">Subscription Summary</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li><strong>Plan:</strong> ${packageName}</li>
+                <li><strong>Billing Cycle:</strong> ${billingCycle.replace('-', ' ').toUpperCase()}</li>
+                ${couponCode ? `<li><strong>Coupon Applied:</strong> ${couponCode} (-${couponDiscount}%)</li>` : ''}
+                <li><strong>Discount Earned:</strong> ${totalDiscount}%</li>
+              </ul>
+            </div>
+            
+            <p>If you have any immediate questions, feel free to reply to this email.</p>
+            <p>Best regards,<br>The Elevate Digital Team</p>
+          </div>
+        `;
+      } else {
+        clientSubject = `Your Web Development Package: ${packageName}`;
+        clientHtml = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
             <h2 style="color: #2563eb;">Welcome to Elevate Digital!</h2>
             <p>Hi ${name},</p>
@@ -117,7 +144,8 @@ module.exports = async (req, res) => {
               <h3 style="margin-top: 0;">Subscription Summary</h3>
               <ul style="list-style: none; padding: 0;">
                 <li><strong>Package:</strong> ${packageName}</li>
-                <li><strong>Maintenance Cycle:</strong> ${billingCycle.replace('-', ' ').toUpperCase()}</li>
+                <li><strong>Future Maintenance Tier:</strong> ${maintenanceTier !== 'none' ? maintenanceTier : 'Opted Out'}</li>
+                <li><strong>Future Maintenance Cycle:</strong> ${billingCycle.replace('-', ' ').toUpperCase()}</li>
                 ${couponCode ? `<li><strong>Coupon Applied:</strong> ${couponCode} (-${couponDiscount}%)</li>` : ''}
                 <li><strong>Total Maintenance Discount:</strong> ${totalDiscount}%</li>
               </ul>
@@ -129,20 +157,29 @@ module.exports = async (req, res) => {
             <p>If you have any immediate questions, feel free to reply to this email.</p>
             <p>Best regards,<br>The Elevate Digital Team</p>
           </div>
-        `
+        `;
+      }
+      
+      const clientMailOptions = {
+        from: `"Elevate Digital" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: clientSubject,
+        html: clientHtml
       };
 
       // Email to Admin
       const adminMailOptions = {
         from: `"CRM System" <${process.env.SMTP_USER}>`,
         to: process.env.ADMIN_EMAIL || process.env.SMTP_USER,
-        subject: `New Lead: ${name} - ${packageName}`,
+        subject: `New Lead: ${name} - ${packageName} (${planType})`,
         html: `
           <h2>New Client Registration</h2>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Package:</strong> ${packageName}</p>
+          <p><strong>Type:</strong> ${planType}</p>
+          <p><strong>Package/Plan Name:</strong> ${packageName}</p>
+          ${planType === 'package' ? `<p><strong>Future Maintenance Tier:</strong> ${maintenanceTier}</p>` : ''}
           <p><strong>Billing:</strong> ${billingCycle}</p>
           <p><strong>Discount:</strong> ${totalDiscount}% (Coupon: ${couponCode || 'None'})</p>
           <p><strong>System Status:</strong> Client saved to Firebase with ID: ${clientId}</p>

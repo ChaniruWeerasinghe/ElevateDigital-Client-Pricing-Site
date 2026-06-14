@@ -5,12 +5,12 @@ import { getFirestore, collection, getDocs, doc, updateDoc, Timestamp } from "ht
 
 // TODO: Replace with your Firebase Project Config
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCmzWd5XRMaxNAv1VExf3E65ArGdj4SwwI",
+  authDomain: "elevatedigital-client-db.firebaseapp.com",
+  projectId: "elevatedigital-client-db",
+  storageBucket: "elevatedigital-client-db.firebasestorage.app",
+  messagingSenderId: "593887188272",
+  appId: "1:593887188272:web:29478d8fbd9721c933a4f5"
 };
 
 // Initialize Firebase

@@ -498,12 +498,14 @@
       createSubscription: function(data, actions) {
         // Map our maintenance plans to PayPal Plan IDs (Mock for now)
         const PAYPAL_PLAN_IDS = {
-          'Basic Maintenance': 'P-17L96648229D7571WNIXE7ZY',   // Mapped to Sandbox Basic Plan (US)
+          'Basic Maintenance': 'P-17L9664822907571WNIXE7ZY',   // Mapped to Sandbox Basic Plan (US)
           'Standard Maintenance': 'P-63G242488V168893YNIXFABA', // Mapped to Sandbox Standard Plan (US)
           'Pro Maintenance': 'P-202571332F6194926NIXFAGY'        // Mapped to Sandbox Pro Plan (US)
         };
         const selectedPlan = packageNameInput.value;
         const planId = PAYPAL_PLAN_IDS[selectedPlan] || 'P-DEFAULT_MOCK_ID';
+        console.log("DEBUG: selectedPlan =", selectedPlan);
+        console.log("DEBUG: planId =", planId);
         
         return actions.subscription.create({
           'plan_id': planId

@@ -293,11 +293,56 @@ window.markAsPaid = async function(clientId, billingCycle) {
       nextDueDate: Timestamp.fromDate(newDueDate)
     });
 
-    alert("Successfully marked as paid!");
+    showToast("Successfully marked as paid!", "success");
     loadClients(); // Reload table
 
   } catch (error) {
     console.error("Error updating document:", error);
-    alert("Failed to update status.");
+    showToast("Failed to update status.", "error");
   }
 };
+
+// --- Custom Toast Notification ---
+function showToast(message, type = "success") {
+  const existing = document.getElementById('custom-toast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'custom-toast';
+  toast.style.position = 'fixed';
+  toast.style.bottom = '2rem';
+  toast.style.left = '50%';
+  toast.style.transform = 'translateX(-50%) translateY(100px)';
+  toast.style.background = type === 'success' ? '#10b981' : '#ef4444';
+  toast.style.color = '#fff';
+  toast.style.padding = '1rem 2rem';
+  toast.style.borderRadius = '50px';
+  toast.style.fontWeight = '600';
+  toast.style.fontSize = '0.95rem';
+  toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+  toast.style.zIndex = '9999';
+  toast.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+  toast.style.display = 'flex';
+  toast.style.alignItems = 'center';
+  toast.style.gap = '0.5rem';
+
+  const icon = document.createElement('i');
+  icon.className = type === 'success' ? 'ph-fill ph-check-circle' : 'ph-fill ph-warning-circle';
+  icon.style.fontSize = '1.25rem';
+
+  const text = document.createElement('span');
+  text.textContent = message;
+
+  toast.appendChild(icon);
+  toast.appendChild(text);
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+  });
+
+  setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}

@@ -21,6 +21,7 @@ const db = getFirestore(app);
 // DOM Elements
 const loginSection = document.getElementById('login-section');
 const dashboardSection = document.getElementById('dashboard-section');
+const loginForm = document.getElementById('admin-login-form');
 const loginError = document.getElementById('login-error');
 const btnLogout = document.getElementById('btn-logout');
 const btnGoogleLogin = document.getElementById('btn-google-login');
@@ -55,7 +56,35 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// --- Login Logic ---
+if (loginForm) {
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    const btn = document.getElementById('btn-login');
 
+    btn.disabled = true;
+    btn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Logging in...';
+    loginError.textContent = '';
+
+    try {
+      // For testing without real config, you can bypass this if needed, 
+      // but assuming the user will add real config later.
+      if (firebaseConfig.apiKey === "YOUR_API_KEY") {
+        loginError.textContent = "Please configure Firebase in js/admin.js first!";
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+      }
+    } catch (error) {
+      loginError.textContent = "Invalid email or password.";
+      console.error(error);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Login with Email <i class="ph ph-sign-in"></i>';
+    }
+  });
+}
 
 // --- Google Sign-In Logic ---
 if (btnGoogleLogin) {
@@ -77,7 +106,33 @@ if (btnGoogleLogin) {
   });
 }
 
+// --- Forgot Password Logic ---
+if (btnForgotPassword) {
+  btnForgotPassword.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    
+    if (!email) {
+      loginError.textContent = "Please enter your email address first to reset your password.";
+      return;
+    }
 
+    loginError.textContent = '';
+    btnForgotPassword.textContent = "Sending...";
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      loginError.style.color = "var(--accent)";
+      loginError.textContent = "Password reset email sent! Check your inbox.";
+    } catch (error) {
+      console.error(error);
+      loginError.style.color = "var(--danger)";
+      loginError.textContent = "Error sending reset email. Make sure the email is registered.";
+    } finally {
+      btnForgotPassword.textContent = "Forgot Password?";
+    }
+  });
+}
 
 // --- Logout Logic ---
 if (btnLogout) {

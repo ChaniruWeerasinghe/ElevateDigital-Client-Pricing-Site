@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { name, email, phone, packageName, planType, maintenanceTier, billingCycle, couponCode, paypalSubscriptionId } = req.body;
+    const { name, email, phone, companyName, companyAddress, businessType, industry, projectBrief, timeline, packageName, planType, maintenanceTier, billingCycle, couponCode, paypalSubscriptionId } = req.body;
 
     if (!name || !email || !phone || !packageName) {
       return res.status(400).json({ message: 'Missing required fields' });
@@ -89,6 +89,12 @@ module.exports = async (req, res) => {
         name,
         email,
         phone,
+        companyName: companyName || null,
+        companyAddress: companyAddress || null,
+        businessType: businessType || null,
+        industry: industry || null,
+        projectBrief: projectBrief || null,
+        timeline: timeline || null,
         packageName,
         planType: planType || 'package',
         maintenanceTier: maintenanceTier || 'none',
@@ -183,12 +189,18 @@ module.exports = async (req, res) => {
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Phone:</strong> ${phone}</p>
+          ${companyName ? `<p><strong>Company:</strong> ${companyName}</p>` : ''}
+          ${companyAddress ? `<p><strong>Address:</strong> ${companyAddress}</p>` : ''}
+          ${businessType ? `<p><strong>Business Type:</strong> ${businessType}</p>` : ''}
+          ${industry ? `<p><strong>Industry:</strong> ${industry}</p>` : ''}
           <p><strong>Type:</strong> ${planType}</p>
           <p><strong>Package/Plan Name:</strong> ${packageName}</p>
+          ${timeline ? `<p><strong>Target Timeline:</strong> ${timeline}</p>` : ''}
           ${planType === 'package' ? `<p><strong>Future Maintenance Tier:</strong> ${maintenanceTier}</p>` : ''}
           <p><strong>Billing:</strong> ${billingCycle}</p>
           <p><strong>Discount:</strong> ${totalDiscount}% (Coupon: ${couponCode || 'None'})</p>
           ${paypalSubscriptionId ? `<p><strong>PayPal Sub ID:</strong> ${paypalSubscriptionId}</p>` : ''}
+          ${projectBrief ? `<h3>Project Brief:</h3><p style="background: #f4f6f8; padding: 15px; border-left: 4px solid #4f46e5; white-space: pre-wrap;">${projectBrief}</p>` : ''}
           <p><strong>System Status:</strong> Client saved to Firebase with ID: ${clientId}</p>
         `
       };

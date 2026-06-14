@@ -177,10 +177,19 @@
 
         const submitBtn = document.getElementById('submit-plan-btn');
         const paypalContainer = document.getElementById('paypal-button-container');
+        
+        const businessTypeGroup = document.getElementById('business-type-group');
+        const industryGroup = document.getElementById('industry-group');
+        const projectBriefGroup = document.getElementById('project-brief-group');
+        const timelineGroup = document.getElementById('timeline-group');
 
         if (planType === 'maintenance') {
           modalHeaderTitle.textContent = "Request Maintenance";
           maintenanceTierGroup.style.display = 'none';
+          if (businessTypeGroup) businessTypeGroup.style.display = 'none';
+          if (industryGroup) industryGroup.style.display = 'none';
+          if (projectBriefGroup) projectBriefGroup.style.display = 'none';
+          if (timelineGroup) timelineGroup.style.display = 'none';
           if (submitBtn) submitBtn.style.display = 'none';
           if (paypalContainer) paypalContainer.style.display = 'block';
           if (couponGroup) couponGroup.style.display = 'none';
@@ -193,6 +202,10 @@
         } else {
           modalHeaderTitle.textContent = "Complete Your Request";
           maintenanceTierGroup.style.display = 'block';
+          if (businessTypeGroup) businessTypeGroup.style.display = 'block';
+          if (industryGroup) industryGroup.style.display = 'block';
+          if (projectBriefGroup) projectBriefGroup.style.display = 'block';
+          if (timelineGroup) timelineGroup.style.display = 'block';
           if (submitBtn) submitBtn.style.display = 'block';
           if (paypalContainer) paypalContainer.style.display = 'none';
           if (couponGroup) couponGroup.style.display = 'block';
@@ -395,6 +408,20 @@
         return;
       }
 
+      // Check required new fields if not maintenance
+      const planType = document.getElementById('form-plan-type').value;
+      if (planType !== 'maintenance') {
+        const businessType = document.getElementById('form-business-type').value;
+        const industry = document.getElementById('form-industry').value;
+        const projectBrief = document.getElementById('form-project-brief').value.trim();
+        const timeline = document.getElementById('form-timeline').value;
+        
+        if (!businessType || !industry || !projectBrief || !timeline) {
+          showToast("Please fill out all required project details.", "error");
+          return;
+        }
+      }
+
       const submitBtn = document.getElementById('submit-plan-btn');
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Processing...';
@@ -404,6 +431,12 @@
         name: inputName.value.trim(),
         email: inputEmail.value.trim(),
         phone: inputPhone.value.trim(),
+        companyName: document.getElementById('form-company-name') ? document.getElementById('form-company-name').value.trim() : '',
+        companyAddress: document.getElementById('form-company-address') ? document.getElementById('form-company-address').value.trim() : '',
+        businessType: document.getElementById('form-business-type') ? document.getElementById('form-business-type').value : '',
+        industry: document.getElementById('form-industry') ? document.getElementById('form-industry').value : '',
+        projectBrief: document.getElementById('form-project-brief') ? document.getElementById('form-project-brief').value.trim() : '',
+        timeline: document.getElementById('form-timeline') ? document.getElementById('form-timeline').value : '',
         packageName: packageNameInput.value,
         planType: document.getElementById('form-plan-type').value,
         maintenanceTier: document.getElementById('form-maintenance-tier').value,
@@ -516,6 +549,12 @@
           name: inputName.value.trim(),
           email: inputEmail.value.trim(),
           phone: inputPhone.value.trim(),
+          companyName: document.getElementById('form-company-name') ? document.getElementById('form-company-name').value.trim() : '',
+          companyAddress: document.getElementById('form-company-address') ? document.getElementById('form-company-address').value.trim() : '',
+          businessType: document.getElementById('form-business-type') ? document.getElementById('form-business-type').value : '',
+          industry: document.getElementById('form-industry') ? document.getElementById('form-industry').value : '',
+          projectBrief: document.getElementById('form-project-brief') ? document.getElementById('form-project-brief').value.trim() : '',
+          timeline: document.getElementById('form-timeline') ? document.getElementById('form-timeline').value : '',
           packageName: packageNameInput.value,
           planType: 'maintenance',
           maintenanceTier: 'none',

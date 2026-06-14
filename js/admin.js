@@ -141,6 +141,27 @@ if (btnLogout) {
   });
 }
 
+// --- Avatar Helpers ---
+function getInitials(name) {
+  if (!name) return 'U';
+  const parts = name.split(' ');
+  let initials = '';
+  if (parts.length > 0) initials += parts[0][0];
+  if (parts.length > 1) initials += parts[parts.length - 1][0];
+  return initials.toUpperCase();
+}
+
+const colors = ['#2563eb', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#f43f5e'];
+function getAvatarColor(name) {
+  if (!name) return colors[0];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % colors.length;
+  return colors[index];
+}
+
 // --- Load Dashboard Data ---
 async function loadClients() {
   if (firebaseConfig.apiKey === "YOUR_API_KEY") return;
@@ -186,11 +207,20 @@ async function loadClients() {
         statusHtml = `<span class="status-badge status-paid"><i class="ph-fill ph-check-circle"></i> Paid (Due in ${diffDays} days)</span>`;
       }
 
+      const clientName = client.name || 'Unknown';
+      const initials = getInitials(clientName);
+      const avatarColor = getAvatarColor(clientName);
+
       html += `
         <tr>
           <td>
-            <div class="client-info-cell">
-              <span class="client-name">${client.name || 'Unknown'}</span>
+            <div class="client-info-wrapper">
+              <div class="client-avatar" style="background-color: ${avatarColor};">
+                ${initials}
+              </div>
+              <div class="client-info-cell">
+                <span class="client-name">${clientName}</span>
+              </div>
             </div>
           </td>
           <td>

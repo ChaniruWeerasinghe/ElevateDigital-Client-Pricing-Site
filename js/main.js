@@ -498,7 +498,7 @@
       createSubscription: function(data, actions) {
         // Map our maintenance plans to PayPal Plan IDs (Mock for now)
         const PAYPAL_PLAN_IDS = {
-          'Basic Maintenance': 'P-1K856162D3605572PNIRWVIQ',   // Mapped to Sandbox Starter Plan
+          'Basic Maintenance': 'P-1TH04670V0629372JNIXEJ4I',   // Mapped to Sandbox Basic Plan
           'Standard Maintenance': 'P-6S1449434N782813VNIRWXSI', // Mapped to Sandbox Pro Plan
           'Pro Maintenance': 'P-5V425999W2513015TNIRWYQY'        // Mapped to Sandbox Max Plan
         };

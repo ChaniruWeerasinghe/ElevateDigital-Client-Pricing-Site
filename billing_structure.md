@@ -373,8 +373,8 @@ These features can be added to any package tier. Prices are one-time setup fees 
 - Staging environment for testing changes
 
 **Notes:**
-- Work beyond the included hours is billed separately
-- Hosting is NOT included in maintenance (billed separately)
+- Work beyond the included hours is billed at standard rate ($40/hour)
+- Hosting and Domain renewals are NOT included in maintenance (billed annually, starting at $150/year)
 - New pages or major features are billed as separate projects
 - 30-day cancellation notice required
 

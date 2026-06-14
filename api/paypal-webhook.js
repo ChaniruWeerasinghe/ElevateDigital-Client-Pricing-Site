@@ -1,6 +1,6 @@
 // api/paypal-webhook.js
 const { initializeApp, getApps } = require('firebase-admin/app');
-const { getFirestore } = require('firebase-admin/firestore');
+const { getFirestore, Timestamp } = require('firebase-admin/firestore');
 const nodemailer = require('nodemailer');
 
 // Initialize Firebase Admin if not already initialized
@@ -67,9 +67,24 @@ module.exports = async (req, res) => {
       console.log(`Client ${clientId} subscription activated.`);
     } 
     else if (event.event_type === 'PAYMENT.SALE.COMPLETED') {
-      // A monthly payment succeeded!
-      // Here you could save an invoice record or send a receipt
-      console.log(`Client ${clientId} monthly payment succeeded.`);
+      // A monthly or annual payment succeeded!
+      // Calculate the new due date automatically
+      const cycle = clientData.maintenanceCycle || 'monthly';
+      const currentDue = clientData.nextDueDate ? clientData.nextDueDate.toDate() : new Date();
+      const newDue = new Date(currentDue);
+      
+      if (cycle === 'annual') {
+        newDue.setFullYear(newDue.getFullYear() + 1);
+      } else {
+        newDue.setMonth(newDue.getMonth() + 1);
+      }
+
+      await clientsRef.doc(clientId).update({
+        nextDueDate: Timestamp.fromDate(newDue),
+        status: 'active'
+      });
+
+      console.log(`Client ${clientId} automated payment succeeded. Next due date updated to ${newDue.toLocaleDateString()}.`);
     }
     else if (event.event_type === 'BILLING.SUBSCRIPTION.CANCELLED' || event.event_type === 'PAYMENT.SALE.DENIED') {
       // Card declined or they cancelled

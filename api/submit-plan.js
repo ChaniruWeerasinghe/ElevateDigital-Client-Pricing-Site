@@ -116,30 +116,58 @@ module.exports = async (req, res) => {
       let clientHtml = '';
       
       if (isMaintenanceOnly) {
+        let monthlyPrice = 0;
+        let features = '';
+        if (packageName === 'Basic Maintenance') {
+          monthlyPrice = 50;
+          features = '<li>Software/plugin updates</li><li>Weekly backups</li><li>Security patches & uptime monitoring</li>';
+        } else if (packageName === 'Standard Maintenance') {
+          monthlyPrice = 150;
+          features = '<li>Daily backups</li><li>Security hardening & malware scans</li><li>Monthly performance reports</li><li>Priority email support</li>';
+        } else if (packageName === 'Pro Maintenance') {
+          monthlyPrice = 300;
+          features = '<li>Real-time backups</li><li>Speed & performance optimization</li><li>SEO monitoring & adjustments</li><li>Priority same-day support</li>';
+        }
+
+        let cycleMonths = 1;
+        if (billingCycle === 'semi-annual') cycleMonths = 6;
+        if (billingCycle === 'annual') cycleMonths = 12;
+
+        let subtotal = monthlyPrice * cycleMonths;
+        let finalPrice = subtotal - (subtotal * (totalDiscount / 100));
+
         clientSubject = `Your Maintenance Plan: ${packageName}`;
         clientHtml = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
             <h2 style="color: #10b981;">Maintenance Plan Activated!</h2>
             <p>Hi ${name},</p>
-            <p>Thank you for returning to Elevate Digital. We've received your request to start the <strong>${packageName}</strong>.</p>
-            <p>We're thrilled to continue keeping your website secure, fast, and up-to-date.</p>
+            <p>Thank you for returning to Elevate Digital. We have received your request to start the <strong>${packageName}</strong>.</p>
+            <p>We are thrilled to continue keeping your website secure, fast, and up-to-date.</p>
             
             ${paypalSubscriptionId ? `<div style="background: #eef2ff; padding: 15px; border-left: 4px solid #4f46e5; margin: 20px 0;">
-              <strong>✅ Automated Billing Active</strong><br>
-              Your card has been securely saved via PayPal (Subscription ID: ${paypalSubscriptionId}). You will be automatically billed based on your cycle, so you never have to worry about missing a payment!
+              <strong>Automated Billing Active</strong><br>
+              Your payment method has been securely saved via PayPal (Subscription ID: ${paypalSubscriptionId}). You will be automatically billed based on your cycle, so you never have to worry about missing a payment.
             </div>` : ''}
 
             <div style="background: #f2fbf7; padding: 15px; border-radius: 8px; margin: 20px 0;">
               <h3 style="margin-top: 0;">Subscription Summary</h3>
-              <ul style="list-style: none; padding: 0;">
+              <ul style="list-style: none; padding: 0; line-height: 1.6;">
                 <li><strong>Plan:</strong> ${packageName}</li>
                 <li><strong>Billing Cycle:</strong> ${billingCycle.replace('-', ' ').toUpperCase()}</li>
                 ${couponCode ? `<li><strong>Coupon Applied:</strong> ${couponCode} (-${couponDiscount}%)</li>` : ''}
-                <li><strong>Discount Earned:</strong> ${totalDiscount}%</li>
+                <li><strong>Discount Applied:</strong> ${totalDiscount}%</li>
+                <li><strong>Total Recurring Charge:</strong> $${finalPrice.toFixed(2)} USD / ${billingCycle.replace('-', ' ')}</li>
+              </ul>
+            </div>
+
+            <div style="background: #f9fafb; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #e5e7eb;">
+              <h3 style="margin-top: 0; font-size: 1.1rem;">What is included in this plan?</h3>
+              <ul style="margin-bottom: 0; padding-left: 20px; line-height: 1.6;">
+                ${features}
               </ul>
             </div>
             
-            <p>If you have any immediate questions, feel free to reply to this email.</p>
+            <p>If you have any immediate questions, feel free to reply directly to this email.</p>
             <p>Best regards,<br>The Elevate Digital Team</p>
           </div>
         `;

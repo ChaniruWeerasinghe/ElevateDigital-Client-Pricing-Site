@@ -62,10 +62,23 @@ module.exports = async (req, res) => {
 
     const totalDiscount = Math.min(couponDiscount + billingDiscount, 100);
 
-    // Calculate Due Date (Initially set to 30 days from now for the Warranty period)
+    // Calculate Due Date based on Package Warranty
+    const WARRANTY_DAYS = {
+      'Starter': 30,
+      'Digital Presence': 30,
+      'Business Standard': 45,
+      'Business Pro': 45,
+      'E-Commerce': 60,
+      'E-Commerce Pro': 90,
+      'Custom Web Application': 90
+    };
+    
+    // Default to 30 if somehow a weird package name gets through
+    const warrantyDays = WARRANTY_DAYS[packageName] || 30;
+
     const now = new Date();
     const dueDate = new Date();
-    dueDate.setDate(now.getDate() + 30); // 30 Day Free Warranty
+    dueDate.setDate(now.getDate() + warrantyDays);
 
     // 1. Save to Firebase Firestore
     let clientId = "pending";
@@ -109,7 +122,7 @@ module.exports = async (req, res) => {
                 <li><strong>Total Maintenance Discount:</strong> ${totalDiscount}%</li>
               </ul>
               <p style="font-size: 0.85rem; color: #666; margin-bottom: 0;">
-                <em>Note: Your first 30 days after launch are covered under our free post-launch warranty. Your first maintenance invoice will be generated on ${dueDate.toLocaleDateString()}.</em>
+                <em>Note: Your first ${warrantyDays} days after launch are covered under our free post-launch warranty. Your first maintenance invoice will be generated on ${dueDate.toLocaleDateString()}.</em>
               </p>
             </div>
             

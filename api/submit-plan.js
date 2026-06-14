@@ -108,6 +108,80 @@ module.exports = async (req, res) => {
       });
       clientId = docRef.id;
     }
+    // --- PAYPAL API: GENERATE DRAFT INVOICE (50% DEPOSIT) ---
+    let draftInvoiceId = null;
+    let depositAmount = 0;
+    if (planType === 'package' && process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_SECRET) {
+      const packagePrices = {
+        'Starter': 350,
+        'Digital Presence': 750,
+        'Business Standard': 1500,
+        'Business Pro': 3500,
+        'E-Commerce': 4500,
+        'E-Commerce Pro': 8500
+      };
+      
+      const fullPrice = packagePrices[packageName];
+      if (fullPrice) {
+        depositAmount = (fullPrice * 0.5).toFixed(2);
+        try {
+          // 1. Get Access Token
+          const auth = Buffer.from(`${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_SECRET}`).toString('base64');
+          const tokenRes = await fetch('https://api-m.sandbox.paypal.com/v1/oauth2/token', {
+            method: 'POST',
+            body: 'grant_type=client_credentials',
+            headers: {
+              'Authorization': `Basic ${auth}`,
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          });
+          const tokenData = await tokenRes.json();
+          
+          if (tokenData.access_token) {
+            // 2. Create Draft Invoice
+            const invoicePayload = {
+              "detail": {
+                "currency_code": "USD",
+                "note": "Thank you for choosing Elevate Digital! This invoice is for the 50% upfront deposit to officially kick off your web development project."
+              },
+              "primary_recipients": [{
+                "billing_info": {
+                  "name": { "given_name": name },
+                  "email_address": email
+                }
+              }],
+              "items": [{
+                "name": `50% Deposit - ${packageName} Package`,
+                "quantity": "1",
+                "unit_amount": {
+                  "currency_code": "USD",
+                  "value": depositAmount.toString()
+                }
+              }]
+            };
+
+            const invoiceRes = await fetch('https://api-m.sandbox.paypal.com/v2/invoicing/invoices', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${tokenData.access_token}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(invoicePayload)
+            });
+            const invoiceData = await invoiceRes.json();
+            
+            if (invoiceData.id) {
+              draftInvoiceId = invoiceData.id;
+            } else {
+              console.error("PayPal Invoice Creation Failed:", invoiceData);
+            }
+          }
+        } catch (paypalErr) {
+          console.error("PayPal API Error:", paypalErr);
+        }
+      }
+    }
+    // --- END PAYPAL API ---
 
     // 2. Send Emails via Nodemailer
     if (process.env.SMTP_USER) {
@@ -235,6 +309,12 @@ module.exports = async (req, res) => {
           <p><strong>Discount:</strong> ${totalDiscount}% (Coupon: ${couponCode || 'None'})</p>
           ${paypalSubscriptionId ? `<p><strong>PayPal Sub ID:</strong> ${paypalSubscriptionId}</p>` : ''}
           ${projectBrief ? `<h3>Project Brief:</h3><p style="background: #f4f6f8; padding: 15px; border-left: 4px solid #4f46e5; white-space: pre-wrap;">${projectBrief}</p>` : ''}
+          ${draftInvoiceId ? `<div style="background: #eef2ff; padding: 15px; border: 1px solid #4f46e5; border-radius: 8px; margin-top: 20px;">
+            <h3 style="color: #4f46e5; margin-top: 0;">🚀 Draft Invoice Generated!</h3>
+            <p>A draft invoice for the <strong>$${depositAmount}</strong> deposit has been automatically created in your PayPal account.</p>
+            <p><strong>PayPal Invoice ID:</strong> ${draftInvoiceId}</p>
+            <p><em>After your consultation call, just log into PayPal -> Invoicing -> Drafts, and click Send!</em></p>
+          </div>` : ''}
           <p><strong>System Status:</strong> Client saved to Firebase with ID: ${clientId}</p>
         `
       };

@@ -78,9 +78,9 @@
   - Footer with social media links
   - Mobile-friendly design
   - Basic on-page SEO (meta tags, title)
-- Base Value: $50 - $100
-- Service Fee: $100 - $150
-- **Range: $150 - $250 USD (~50,250 - 83,750 LKR)**
+- Base Value: $100
+- Service Fee: $250
+- **Total Price: $350 USD (~115,000 LKR)**
 
 ### 2. Digital Presence (Landing Page)
 
@@ -96,9 +96,9 @@
   - WhatsApp/call button
   - Basic SEO setup (sitemap, meta tags, Open Graph)
   - SSL certificate setup
-- Base Value: $100 - $200
-- Service Fee: $150 - $400
-- **Range: $250 - $600 USD (~83,750 - 201,000 LKR)**
+- Base Value: $250
+- Service Fee: $500
+- **Total Price: $750 USD (~245,000 LKR)**
 
 ### 3. Business Standard (Multi-Page)
 
@@ -116,9 +116,9 @@
   - Contact form with multiple fields
   - Google Analytics setup
   - Speed optimization
-- Base Value: $300 - $500
-- Service Fee: $400 - $1,000
-- **Range: $700 - $1,500 USD (~234,500 - 502,500 LKR)**
+- Base Value: $500
+- Service Fee: $1,000
+- **Total Price: $1,500 USD (~495,000 LKR)**
 
 ### 4. Business Pro (with Booking/CRM)
 
@@ -137,9 +137,9 @@
   - Newsletter signup
   - Basic analytics and reporting
   - User login (admin side)
-- Base Value: $500 - $1,000
-- Service Fee: $1,000 - $2,000
-- **Range: $1,500 - $3,000 USD (~502,500 - 1,005,000 LKR)**
+- Base Value: $1,000
+- Service Fee: $2,500
+- **Total Price: $3,500 USD (~1,150,000 LKR)**
 
 ### 5. E-Commerce (Online Store)
 
@@ -160,9 +160,9 @@
   - Email notifications (order confirmation, shipping updates)
   - Inventory tracking (basic)
   - Mobile-optimized shopping experience
-- Base Value: $500 - $1,500
-- Service Fee: $1,500 - $3,500
-- **Range: $2,000 - $5,000 USD (~670,000 - 1,675,000 LKR)**
+- Base Value: $1,500
+- Service Fee: $3,000
+- **Total Price: $4,500 USD (~1,480,000 LKR)**
 
 ### 6. E-Commerce Pro (Full Scale)
 
@@ -183,9 +183,9 @@
   - Export reports (CSV/PDF)
   - Admin role management (super admin, manager, staff)
   - SEO-optimized product pages
-- Base Value: $1,500 - $3,000
-- Service Fee: $3,500 - $5,000
-- **Range: $5,000 - $8,000 USD (~1,675,000 - 2,680,000 LKR)**
+- Base Value: $2,500
+- Service Fee: $6,000
+- **Total Price: $8,500 USD (~2,800,000 LKR)**
 
 ### 7. Custom Web Application
 
@@ -207,9 +207,9 @@
   - Deployment and server setup
   - Post-launch support (bug fixes, minor updates)
   - Documentation
-- Base Value: $2,000 - $5,000
-- Service Fee: $3,000 - $10,000
-- **Range: $5,000 - $15,000+ USD (~1,675,000 - 5,025,000+ LKR)**
+- Base Value: $3,000+
+- Service Fee: $7,000+
+- **Starts at: $10,000+ USD (~3,300,000+ LKR)**
 
 ---
 

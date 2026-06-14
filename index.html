@@ -1445,8 +1445,8 @@
         </div>
 
         <div class="form-group" id="project-brief-group">
-          <label for="form-project-brief" id="project-brief-label">Project Brief / Vision</label>
-          <textarea id="form-project-brief" name="projectBrief" required placeholder="Describe what you want to achieve with this website..." rows="4" style="width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-light); border-radius: 8px; font-family: inherit; font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); transition: all 0.3s ease; resize: vertical;"></textarea>
+          <label for="form-project-brief" id="project-brief-label">Project Brief / Vision (Optional)</label>
+          <textarea id="form-project-brief" name="projectBrief" placeholder="Describe what you want to achieve with this website..." rows="4" style="width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-light); border-radius: 8px; font-family: inherit; font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); transition: all 0.3s ease; resize: vertical;"></textarea>
           <span class="validation-msg" id="project-brief-error"></span>
         </div>
 
@@ -1518,8 +1518,10 @@
           </div>
         </div>
         
-        <button type="submit" class="btn btn-primary" id="submit-plan-btn" style="width: 100%; margin-top: 1.5rem;">Send Request <i class="ph ph-paper-plane-tilt"></i></button>
-        <div id="paypal-button-container" style="display: none; margin-top: 1.5rem;"></div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="submit-plan-btn" style="width: 100%;">Submit Project Brief</button>
+          <div id="paypal-button-container" style="width: 100%; margin-top: 1rem; display: none;"></div>
+        </div>
       </form>
     </div>
   </div>

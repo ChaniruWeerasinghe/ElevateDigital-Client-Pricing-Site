@@ -150,7 +150,13 @@ module.exports = async (req, res) => {
             <h2 style="color: #2563eb;">Welcome to Elevate Digital!</h2>
             <p>Hi ${name},</p>
             <p>Thank you for choosing the <strong>${packageName}</strong> package.</p>
-            <p>Your request has been successfully received, and we are thrilled to start working with you. We will be in touch shortly via email or phone (${phone}) to discuss the next steps.</p>
+            <p>Your project brief has been successfully received! Here is what happens next:</p>
+            
+            <ol style="background: #eef2ff; padding: 20px 20px 20px 40px; border-radius: 8px; margin: 20px 0; line-height: 1.6;">
+              <li><strong>Review:</strong> We are currently reviewing your project requirements.</li>
+              <li><strong>Consultation:</strong> We will contact you shortly via email or phone (${phone}) to discuss your vision and align on the final scope.</li>
+              <li><strong>Kickoff:</strong> Once everything is approved, we will send you a secure PayPal invoice for a 50% project deposit so we can begin development!</li>
+            </ol>
             
             <div style="background: #f4f6f8; padding: 15px; border-radius: 8px; margin: 20px 0;">
               <h3 style="margin-top: 0;">Subscription Summary</h3>

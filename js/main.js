@@ -413,11 +413,10 @@
       if (planType !== 'maintenance') {
         const businessType = document.getElementById('form-business-type').value;
         const industry = document.getElementById('form-industry').value;
-        const projectBrief = document.getElementById('form-project-brief').value.trim();
         const timeline = document.getElementById('form-timeline').value;
         
-        if (!businessType || !industry || !projectBrief || !timeline) {
-          showToast("Please fill out all required project details.", "error");
+        if (!businessType || !industry || !timeline) {
+          showToast("Please select your Business Type, Industry, and Timeline.", "error");
           return;
         }
       }
@@ -454,7 +453,7 @@
         const data = await response.json();
 
         if (response.ok) {
-          showToast("Request submitted successfully! We'll be in touch soon.", "success");
+          showToast("Brief submitted successfully! We will review and contact you shortly.", "success");
           planForm.reset();
           modal.classList.remove('active');
           document.body.style.overflow = '';

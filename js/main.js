@@ -209,8 +209,8 @@
         
         // Update billing discount state
         if (value === 'monthly') currentBillingDiscount = 0;
-        else if (value === 'semi-annual') currentBillingDiscount = 10;
-        else if (value === 'annual') currentBillingDiscount = 20;
+        else if (value === 'semi-annual') currentBillingDiscount = 5;
+        else if (value === 'annual') currentBillingDiscount = 10;
 
         updateTotalDiscount();
         customSelectWrapper.classList.remove('open');

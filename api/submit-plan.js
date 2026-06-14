@@ -57,8 +57,8 @@ module.exports = async (req, res) => {
     }
 
     let billingDiscount = 0;
-    if (billingCycle === 'semi-annual') billingDiscount = 10;
-    else if (billingCycle === 'annual') billingDiscount = 20;
+    if (billingCycle === 'semi-annual') billingDiscount = 5;
+    else if (billingCycle === 'annual') billingDiscount = 10;
 
     const totalDiscount = Math.min(couponDiscount + billingDiscount, 100);
 

@@ -885,6 +885,8 @@ td:first-child {
   padding: var(--card-padding);
   transition: all var(--transition-base);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .maintenance-card.featured {
@@ -934,6 +936,7 @@ td:first-child {
   padding: 0;
   border-top: 1px solid var(--border);
   padding-top: 1rem;
+  flex: 1;
 }
 
 .maintenance-features li {

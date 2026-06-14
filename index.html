@@ -1418,15 +1418,15 @@
           <label>Maintenance Billing Cycle</label>
           <div class="custom-select-wrapper">
             <div class="custom-select" id="billing-cycle-select">
-              <span class="custom-select-trigger">Monthly (0% Discount)</span>
+              <span class="custom-select-trigger">12-Month (10% Discount)</span>
               <div class="custom-options">
-                <span class="custom-option selected" data-value="monthly">Monthly (0% Discount)</span>
+                <span class="custom-option" data-value="monthly">Monthly (0% Discount)</span>
                 <span class="custom-option" data-value="semi-annual">6-Month (5% Discount)</span>
-                <span class="custom-option" data-value="annual">12-Month (10% Discount)</span>
+                <span class="custom-option selected" data-value="annual">12-Month (10% Discount)</span>
               </div>
             </div>
           </div>
-          <input type="hidden" id="form-billing-cycle" name="billingCycle" value="monthly">
+          <input type="hidden" id="form-billing-cycle" name="billingCycle" value="annual">
         </div>
         
         <div class="form-group">
@@ -1445,7 +1445,7 @@
           </div>
           <div class="summary-row total">
             <span>Total Discount</span>
-            <span id="total-discount-display">0%</span>
+            <span id="total-discount-display" class="cell-success">10%</span>
           </div>
         </div>
         

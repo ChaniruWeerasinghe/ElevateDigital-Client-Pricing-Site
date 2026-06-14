@@ -156,7 +156,7 @@
   const couponDiscountAmt = document.getElementById('coupon-discount-amt');
   const totalDiscountDisplay = document.getElementById('total-discount-display');
 
-  let currentBillingDiscount = 0; // percentage
+  let currentBillingDiscount = 10; // percentage
   let currentCouponDiscount = 0; // percentage
 
   const planTypeInput = document.getElementById('form-plan-type');

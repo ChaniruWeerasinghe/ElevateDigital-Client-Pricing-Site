@@ -426,6 +426,7 @@ section {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 1.5rem;
   border-radius: var(--radius-sm);

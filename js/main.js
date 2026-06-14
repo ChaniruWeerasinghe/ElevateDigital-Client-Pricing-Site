@@ -134,7 +134,7 @@
   const planButtons = document.querySelectorAll('.select-plan-btn');
   const selectedPlanText = document.getElementById('modal-selected-plan');
   const packageNameInput = document.getElementById('form-package-name');
-  
+
   // Custom Select Elements handled generically below
 
   // Form Elements
@@ -142,7 +142,7 @@
   const inputName = document.getElementById('form-name');
   const inputEmail = document.getElementById('form-email');
   const inputPhone = document.getElementById('form-phone');
-  
+
   // Validation Messages
   const nameError = document.getElementById('name-error');
   const emailError = document.getElementById('email-error');
@@ -174,7 +174,7 @@
         selectedPlanText.textContent = planName;
         packageNameInput.value = planName;
         if (planTypeInput) planTypeInput.value = planType;
-        
+
         const submitBtn = document.getElementById('submit-plan-btn');
         const paypalContainer = document.getElementById('paypal-button-container');
 
@@ -184,7 +184,7 @@
           if (submitBtn) submitBtn.style.display = 'none';
           if (paypalContainer) paypalContainer.style.display = 'block';
           if (couponGroup) couponGroup.style.display = 'none';
-          
+
           // Clear any applied coupons if switching to maintenance
           currentCouponDiscount = 0;
           inputCoupon.value = '';
@@ -219,13 +219,13 @@
 
   // --- Custom Dropdown Logic ---
   const allSelectWrappers = document.querySelectorAll('.custom-select-wrapper');
-  
+
   allSelectWrappers.forEach(wrapper => {
     const customSelect = wrapper.querySelector('.custom-select');
     const trigger = wrapper.querySelector('.custom-select-trigger');
     const options = wrapper.querySelectorAll('.custom-option');
     const hiddenInput = wrapper.nextElementSibling;
-    
+
     trigger.addEventListener('click', function () {
       customSelect.classList.toggle('open');
     });
@@ -234,20 +234,20 @@
       option.addEventListener('click', function () {
         options.forEach(opt => opt.classList.remove('selected'));
         this.classList.add('selected');
-        
+
         const value = this.getAttribute('data-value');
         trigger.textContent = this.textContent;
         if (hiddenInput && hiddenInput.tagName === 'INPUT') {
-           hiddenInput.value = value;
+          hiddenInput.value = value;
         }
-        
+
         if (hiddenInput && hiddenInput.id === 'form-billing-cycle') {
-           if (value === 'monthly') currentBillingDiscount = 0;
-           else if (value === 'semi-annual') currentBillingDiscount = 5;
-           else if (value === 'annual') currentBillingDiscount = 10;
-           updateTotalDiscount();
+          if (value === 'monthly') currentBillingDiscount = 0;
+          else if (value === 'semi-annual') currentBillingDiscount = 5;
+          else if (value === 'annual') currentBillingDiscount = 10;
+          updateTotalDiscount();
         }
-        
+
         customSelect.classList.remove('open');
       });
     });
@@ -260,9 +260,9 @@
   });
 
   // --- Real-time Validation ---
-  
+
   // 1. Name Validation (No numbers allowed)
-  inputName.addEventListener('input', function() {
+  inputName.addEventListener('input', function () {
     const value = this.value;
     const hasNumbers = /\d/.test(value);
     if (hasNumbers) {
@@ -281,11 +281,11 @@
   });
 
   // 2. Email Validation
-  inputEmail.addEventListener('input', function() {
+  inputEmail.addEventListener('input', function () {
     const value = this.value;
     // Standard email regex
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    
+
     if (value.length > 0 && !isValidEmail) {
       this.classList.add('error');
       this.classList.remove('success');
@@ -302,7 +302,7 @@
   });
 
   // 3. Phone Validation (Sri Lankan + Foreign)
-  inputPhone.addEventListener('input', function() {
+  inputPhone.addEventListener('input', function () {
     const value = this.value.trim();
     // Match Sri Lankan: 0771234567, 771234567, +94771234567
     // Match Foreign: general international format (starts with + and 10-15 digits)
@@ -342,7 +342,7 @@
       inputCoupon.classList.remove('error');
       couponMsg.textContent = "Coupon applied successfully!";
       couponMsg.className = "validation-msg success";
-      
+
       couponDiscountRow.style.display = 'flex';
       couponDiscountAmt.textContent = `-${currentCouponDiscount}%`;
     } else {
@@ -351,14 +351,14 @@
       inputCoupon.classList.remove('success');
       couponMsg.textContent = "Invalid or expired coupon code.";
       couponMsg.className = "validation-msg error";
-      
+
       couponDiscountRow.style.display = 'none';
     }
     updateTotalDiscount();
   });
 
   // Automatically reset coupon if input is cleared
-  inputCoupon.addEventListener('input', function() {
+  inputCoupon.addEventListener('input', function () {
     if (this.value.trim() === '') {
       currentCouponDiscount = 0;
       this.classList.remove('error', 'success');
@@ -373,7 +373,7 @@
     // Cap total discount at a reasonable amount (e.g. 100%)
     const finalTotal = Math.min(total, 100);
     totalDiscountDisplay.textContent = `${finalTotal}%`;
-    
+
     if (finalTotal > 0) {
       totalDiscountDisplay.classList.add('cell-success');
     } else {
@@ -385,11 +385,11 @@
   if (planForm) {
     planForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       // Force check validations before submitting
-      if (inputName.classList.contains('error') || 
-          inputEmail.classList.contains('error') || 
-          inputPhone.classList.contains('error')) {
+      if (inputName.classList.contains('error') ||
+        inputEmail.classList.contains('error') ||
+        inputPhone.classList.contains('error')) {
         // Using a professional custom UI notification, NOT alert()
         showToast("Please fix the errors in the form before submitting.", "error");
         return;
@@ -459,7 +459,7 @@
     toast.style.zIndex = '9999';
     toast.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
     toast.innerHTML = `<i class="ph ${type === 'success' ? 'ph-check-circle' : 'ph-warning-circle'}"></i> ${message}`;
-    
+
     document.body.appendChild(toast);
 
     // Animate in
@@ -483,19 +483,19 @@
         layout: 'vertical',
         label: 'subscribe'
       },
-      onClick: function(data, actions) {
+      onClick: function (data, actions) {
         // Validate form
         if (!inputName.value.trim() || !inputEmail.value.trim() || !inputPhone.value.trim()) {
-           showToast("Please fill out your Name, Email, and Phone number before paying.", "error");
-           return actions.reject();
+          showToast("Please fill out your Name, Email, and Phone number before paying.", "error");
+          return actions.reject();
         }
         if (inputName.classList.contains('error') || inputEmail.classList.contains('error') || inputPhone.classList.contains('error')) {
-           showToast("Please fix the errors in the form before paying.", "error");
-           return actions.reject();
+          showToast("Please fix the errors in the form before paying.", "error");
+          return actions.reject();
         }
         return actions.resolve();
       },
-      createSubscription: function(data, actions) {
+      createSubscription: function (data, actions) {
         // Map our maintenance plans to PayPal Plan IDs (Mock for now)
         const PAYPAL_PLAN_IDS = {
           'Basic Maintenance': 'P-17L9664822907571WNIXE7ZY',   // Mapped to Sandbox Basic Plan (US)
@@ -506,12 +506,12 @@
         const planId = PAYPAL_PLAN_IDS[selectedPlan] || 'P-DEFAULT_MOCK_ID';
         console.log("DEBUG: selectedPlan =", selectedPlan);
         console.log("DEBUG: planId =", planId);
-        
+
         return actions.subscription.create({
           'plan_id': planId
         });
       },
-      onApprove: async function(data, actions) {
+      onApprove: async function (data, actions) {
         const formData = {
           name: inputName.value.trim(),
           email: inputEmail.value.trim(),

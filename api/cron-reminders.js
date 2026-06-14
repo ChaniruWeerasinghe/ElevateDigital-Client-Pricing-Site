@@ -1,13 +1,14 @@
 const nodemailer = require('nodemailer');
-const admin = require('firebase-admin');
+const { initializeApp, getApps, cert } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
 
 // Initialize Firebase Admin (Only once per serverless execution)
-if (!admin.apps.length) {
+if (getApps().length === 0) {
   try {
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
       const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+      initializeApp({
+        credential: cert(serviceAccount)
       });
     } else {
       console.warn("FIREBASE_SERVICE_ACCOUNT env variable not found in cron.");
@@ -34,12 +35,12 @@ module.exports = async (req, res) => {
     return res.status(401).json({ message: 'Unauthorized cron request' });
   }
 
-  if (admin.apps.length === 0 || !process.env.SMTP_USER) {
+  if (getApps().length === 0 || !process.env.SMTP_USER) {
     return res.status(500).json({ message: 'System not fully configured (Firebase or SMTP missing)' });
   }
 
   try {
-    const db = admin.firestore();
+    const db = getFirestore();
     const clientsRef = db.collection('clients');
     const snapshot = await clientsRef.get();
 

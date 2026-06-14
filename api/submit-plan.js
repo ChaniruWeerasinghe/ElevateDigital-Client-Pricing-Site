@@ -1,15 +1,15 @@
 const nodemailer = require('nodemailer');
-const admin = require('firebase-admin');
+const { initializeApp, getApps, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
 
 // Initialize Firebase Admin (Only once per serverless execution)
-if (!admin.apps.length) {
+if (getApps().length === 0) {
   try {
     // Vercel Environment Variables need to contain the Firebase Service Account JSON string
-    // e.g. process.env.FIREBASE_SERVICE_ACCOUNT
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
       const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+      initializeApp({
+        credential: cert(serviceAccount)
       });
     } else {
       console.warn("FIREBASE_SERVICE_ACCOUNT env variable not found. Firestore saving will fail.");
@@ -69,8 +69,8 @@ module.exports = async (req, res) => {
 
     // 1. Save to Firebase Firestore
     let clientId = "pending";
-    if (admin.apps.length > 0) {
-      const db = admin.firestore();
+    if (getApps().length > 0) {
+      const db = getFirestore();
       const docRef = await db.collection('clients').add({
         name,
         email,
@@ -79,8 +79,8 @@ module.exports = async (req, res) => {
         billingCycle,
         couponCode: couponCode || null,
         totalDiscount,
-        nextDueDate: admin.firestore.Timestamp.fromDate(dueDate),
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        nextDueDate: Timestamp.fromDate(dueDate),
+        createdAt: FieldValue.serverTimestamp(),
         status: 'warranty'
       });
       clientId = docRef.id;

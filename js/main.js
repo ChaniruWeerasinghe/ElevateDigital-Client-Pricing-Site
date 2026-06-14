@@ -407,7 +407,7 @@
         packageName: packageNameInput.value,
         planType: document.getElementById('form-plan-type').value,
         maintenanceTier: document.getElementById('form-maintenance-tier').value,
-        billingCycle: hiddenBillingInput.value,
+        billingCycle: document.getElementById('form-billing-cycle').value,
         couponCode: inputCoupon.value.trim().toUpperCase()
       };
 
@@ -519,7 +519,7 @@
           packageName: packageNameInput.value,
           planType: 'maintenance',
           maintenanceTier: 'none',
-          billingCycle: hiddenBillingInput.value,
+          billingCycle: document.getElementById('form-billing-cycle').value,
           couponCode: inputCoupon.value.trim().toUpperCase(),
           paypalSubscriptionId: data.subscriptionID
         };

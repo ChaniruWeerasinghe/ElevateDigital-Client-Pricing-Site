@@ -80,7 +80,7 @@
   - Basic on-page SEO (meta tags, title)
 - Base Value: $100
 - Service Fee: $250
-- **Total Price: $350 USD (~115,000 LKR)**
+- **Total Price: $350 USD (~119,000 LKR)**
 
 ### 2. Digital Presence (Landing Page)
 
@@ -98,7 +98,7 @@
   - SSL certificate setup
 - Base Value: $250
 - Service Fee: $500
-- **Total Price: $750 USD (~245,000 LKR)**
+- **Total Price: $750 USD (~255,000 LKR)**
 
 ### 3. Business Standard (Multi-Page)
 
@@ -118,7 +118,7 @@
   - Speed optimization
 - Base Value: $500
 - Service Fee: $1,000
-- **Total Price: $1,500 USD (~495,000 LKR)**
+- **Total Price: $1,500 USD (~510,000 LKR)**
 
 ### 4. Business Pro (with Booking/CRM)
 
@@ -139,7 +139,7 @@
   - User login (admin side)
 - Base Value: $1,000
 - Service Fee: $2,500
-- **Total Price: $3,500 USD (~1,150,000 LKR)**
+- **Total Price: $3,500 USD (~1,190,000 LKR)**
 
 ### 5. E-Commerce (Online Store)
 
@@ -185,7 +185,7 @@
   - SEO-optimized product pages
 - Base Value: $2,500
 - Service Fee: $6,000
-- **Total Price: $8,500 USD (~2,800,000 LKR)**
+- **Total Price: $8,500 USD (~2,890,000 LKR)**
 
 ### 7. Custom Web Application
 

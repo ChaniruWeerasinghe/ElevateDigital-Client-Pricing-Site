@@ -586,7 +586,7 @@ td:first-child {
   background: rgba(251, 191, 36, 0.08);
 }
 
-.info-block strong {
+.info-block > strong {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -594,20 +594,20 @@ td:first-child {
   color: var(--text-heading);
 }
 
-.info-block strong i {
+.info-block > strong i {
   font-size: 1.25rem;
   flex-shrink: 0;
 }
 
-.info-block.note strong i {
+.info-block.note > strong i {
   color: #3b82f6;
 }
 
-.info-block.recommend strong i {
+.info-block.recommend > strong i {
   color: #10b981;
 }
 
-.info-block.warn strong i {
+.info-block.warn > strong i {
   color: #f59e0b;
 }
 

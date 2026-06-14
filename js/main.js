@@ -212,12 +212,13 @@
   const allSelectWrappers = document.querySelectorAll('.custom-select-wrapper');
   
   allSelectWrappers.forEach(wrapper => {
+    const customSelect = wrapper.querySelector('.custom-select');
     const trigger = wrapper.querySelector('.custom-select-trigger');
     const options = wrapper.querySelectorAll('.custom-option');
     const hiddenInput = wrapper.nextElementSibling;
     
     trigger.addEventListener('click', function () {
-      wrapper.classList.toggle('open');
+      customSelect.classList.toggle('open');
     });
 
     options.forEach(option => {
@@ -238,13 +239,13 @@
            updateTotalDiscount();
         }
         
-        wrapper.classList.remove('open');
+        customSelect.classList.remove('open');
       });
     });
 
     document.addEventListener('click', function (e) {
       if (!wrapper.contains(e.target)) {
-        wrapper.classList.remove('open');
+        customSelect.classList.remove('open');
       }
     });
   });

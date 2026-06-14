@@ -499,7 +499,7 @@
         // Map our maintenance plans to PayPal Plan IDs (Mock for now)
         const PAYPAL_PLAN_IDS = {
           'Basic Maintenance': 'P-17L9664822907571WNIXE7ZY',   // Mapped to Sandbox Basic Plan (US)
-          'Standard Maintenance': 'P-63G242488V168893YNIXFABA', // Mapped to Sandbox Standard Plan (US)
+          'Standard Maintenance': 'P-636242488V168893YNIXFABA', // Mapped to Sandbox Standard Plan (US)
           'Pro Maintenance': 'P-202571332F6194926NIXFAGY'        // Mapped to Sandbox Pro Plan (US)
         };
         const selectedPlan = packageNameInput.value;

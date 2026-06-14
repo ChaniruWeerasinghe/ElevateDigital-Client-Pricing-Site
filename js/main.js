@@ -499,8 +499,8 @@
         // Map our maintenance plans to PayPal Plan IDs (Mock for now)
         const PAYPAL_PLAN_IDS = {
           'Basic Maintenance': 'P-1TH04670V0629372JNIXEJ4I',   // Mapped to Sandbox Basic Plan
-          'Standard Maintenance': 'P-6S1449434N782813VNIRWXSI', // Mapped to Sandbox Pro Plan
-          'Pro Maintenance': 'P-5V425999W2513015TNIRWYQY'        // Mapped to Sandbox Max Plan
+          'Standard Maintenance': 'P-1YF81078JE725811KNIXEMOY', // Mapped to Sandbox Standard Plan
+          'Pro Maintenance': 'P-6FN793046M1379544NIXEM7Y'        // Mapped to Sandbox Pro Plan
         };
         const selectedPlan = packageNameInput.value;
         const planId = PAYPAL_PLAN_IDS[selectedPlan] || 'P-DEFAULT_MOCK_ID';

@@ -162,6 +162,7 @@
   const planTypeInput = document.getElementById('form-plan-type');
   const modalHeaderTitle = document.querySelector('.modal-header h2');
   const maintenanceTierGroup = document.getElementById('maintenance-tier-group');
+  const couponGroup = document.getElementById('coupon-group');
 
   // --- Modal Open/Close ---
   if (modal) {
@@ -182,11 +183,19 @@
           maintenanceTierGroup.style.display = 'none';
           if (submitBtn) submitBtn.style.display = 'none';
           if (paypalContainer) paypalContainer.style.display = 'block';
+          if (couponGroup) couponGroup.style.display = 'none';
+          
+          // Clear any applied coupons if switching to maintenance
+          currentCouponDiscount = 0;
+          inputCoupon.value = '';
+          couponDiscountRow.style.display = 'none';
+          updateTotalDiscount();
         } else {
           modalHeaderTitle.textContent = "Complete Your Request";
           maintenanceTierGroup.style.display = 'block';
           if (submitBtn) submitBtn.style.display = 'block';
           if (paypalContainer) paypalContainer.style.display = 'none';
+          if (couponGroup) couponGroup.style.display = 'block';
         }
 
         modal.classList.add('active');

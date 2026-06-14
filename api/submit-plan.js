@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { name, email, phone, packageName, planType, maintenanceTier, billingCycle, couponCode } = req.body;
+    const { name, email, phone, packageName, planType, maintenanceTier, billingCycle, couponCode, paypalSubscriptionId } = req.body;
 
     if (!name || !email || !phone || !packageName) {
       return res.status(400).json({ message: 'Missing required fields' });
@@ -95,6 +95,7 @@ module.exports = async (req, res) => {
         billingCycle,
         couponCode: couponCode || null,
         totalDiscount,
+        paypalSubscriptionId: paypalSubscriptionId || null,
         nextDueDate: isMaintenanceOnly ? null : Timestamp.fromDate(dueDate),
         createdAt: FieldValue.serverTimestamp(),
         status: isMaintenanceOnly ? 'active' : 'warranty'
@@ -115,8 +116,13 @@ module.exports = async (req, res) => {
             <h2 style="color: #10b981;">Maintenance Plan Activated!</h2>
             <p>Hi ${name},</p>
             <p>Thank you for returning to Elevate Digital. We've received your request to start the <strong>${packageName}</strong>.</p>
-            <p>We're thrilled to continue keeping your website secure, fast, and up-to-date. We will be in touch shortly to finalize the setup.</p>
+            <p>We're thrilled to continue keeping your website secure, fast, and up-to-date.</p>
             
+            ${paypalSubscriptionId ? `<div style="background: #eef2ff; padding: 15px; border-left: 4px solid #4f46e5; margin: 20px 0;">
+              <strong>✅ Automated Billing Active</strong><br>
+              Your card has been securely saved via PayPal (Subscription ID: ${paypalSubscriptionId}). You will be automatically billed based on your cycle, so you never have to worry about missing a payment!
+            </div>` : ''}
+
             <div style="background: #f2fbf7; padding: 15px; border-radius: 8px; margin: 20px 0;">
               <h3 style="margin-top: 0;">Subscription Summary</h3>
               <ul style="list-style: none; padding: 0;">
@@ -182,6 +188,7 @@ module.exports = async (req, res) => {
           ${planType === 'package' ? `<p><strong>Future Maintenance Tier:</strong> ${maintenanceTier}</p>` : ''}
           <p><strong>Billing:</strong> ${billingCycle}</p>
           <p><strong>Discount:</strong> ${totalDiscount}% (Coupon: ${couponCode || 'None'})</p>
+          ${paypalSubscriptionId ? `<p><strong>PayPal Sub ID:</strong> ${paypalSubscriptionId}</p>` : ''}
           <p><strong>System Status:</strong> Client saved to Firebase with ID: ${clientId}</p>
         `
       };

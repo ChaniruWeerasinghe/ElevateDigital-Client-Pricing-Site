@@ -174,12 +174,19 @@
         packageNameInput.value = planName;
         if (planTypeInput) planTypeInput.value = planType;
         
+        const submitBtn = document.getElementById('submit-plan-btn');
+        const paypalContainer = document.getElementById('paypal-button-container');
+
         if (planType === 'maintenance') {
           modalHeaderTitle.textContent = "Request Maintenance";
           maintenanceTierGroup.style.display = 'none';
+          if (submitBtn) submitBtn.style.display = 'none';
+          if (paypalContainer) paypalContainer.style.display = 'block';
         } else {
           modalHeaderTitle.textContent = "Complete Your Request";
           maintenanceTierGroup.style.display = 'block';
+          if (submitBtn) submitBtn.style.display = 'block';
+          if (paypalContainer) paypalContainer.style.display = 'none';
         }
 
         modal.classList.add('active');
@@ -457,4 +464,73 @@
     }, 4000);
   }
 
+  // --- PayPal Integration ---
+  if (window.paypal) {
+    paypal.Buttons({
+      style: {
+        shape: 'rect',
+        color: 'blue',
+        layout: 'vertical',
+        label: 'subscribe'
+      },
+      onClick: function(data, actions) {
+        // Validate form
+        if (!inputName.value.trim() || !inputEmail.value.trim() || !inputPhone.value.trim()) {
+           showToast("Please fill out your Name, Email, and Phone number before paying.", "error");
+           return actions.reject();
+        }
+        if (inputName.classList.contains('error') || inputEmail.classList.contains('error') || inputPhone.classList.contains('error')) {
+           showToast("Please fix the errors in the form before paying.", "error");
+           return actions.reject();
+        }
+        return actions.resolve();
+      },
+      createSubscription: function(data, actions) {
+        // Map our maintenance plans to PayPal Plan IDs (Mock for now)
+        const PAYPAL_PLAN_IDS = {
+           'Basic Maintenance': 'P-BASIC_MOCK_ID',
+           'Standard Maintenance': 'P-STANDARD_MOCK_ID',
+           'Pro Maintenance': 'P-PRO_MOCK_ID'
+        };
+        const selectedPlan = packageNameInput.value;
+        const planId = PAYPAL_PLAN_IDS[selectedPlan] || 'P-DEFAULT_MOCK_ID';
+        
+        return actions.subscription.create({
+          'plan_id': planId
+        });
+      },
+      onApprove: async function(data, actions) {
+        const formData = {
+          name: inputName.value.trim(),
+          email: inputEmail.value.trim(),
+          phone: inputPhone.value.trim(),
+          packageName: packageNameInput.value,
+          planType: 'maintenance',
+          maintenanceTier: 'none',
+          billingCycle: hiddenBillingInput.value,
+          couponCode: inputCoupon.value.trim().toUpperCase(),
+          paypalSubscriptionId: data.subscriptionID
+        };
+
+        try {
+          const response = await fetch('/api/submit-plan', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+          const resData = await response.json();
+          if (response.ok) {
+            showToast("Payment Successful! Your maintenance plan is active.", "success");
+            planForm.reset();
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+          } else {
+            showToast(resData.message || "Something went wrong.", "error");
+          }
+        } catch (error) {
+          showToast("Network error.", "error");
+        }
+      }
+    }).render('#paypal-button-container');
+  }
 })();
